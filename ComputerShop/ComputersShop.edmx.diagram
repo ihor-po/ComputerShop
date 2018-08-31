@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="31dfdb59a23745b18fb3b25817d69bb2" Name="Diagram1" >
+        <EntityTypeShape EntityType="ComputersShop.Category" Width="1.5" PointX="1" PointY="0.75" />
+        <EntityTypeShape EntityType="ComputersShop.Component" Width="1.5" PointX="1" PointY="2.875" />
+        <AssociationConnector Association="ComputersShop.CategoryComponent" />
+        <EntityTypeShape EntityType="ComputersShop.Computer" Width="1.5" PointX="3.875" PointY="0.75" />
+        <EntityTypeShape EntityType="ComputersShop.ComputerItem" Width="1.5" PointX="3.875" PointY="2.875" />
+        <AssociationConnector Association="ComputersShop.ComputerComputerItem" />
+        <AssociationConnector Association="ComputersShop.ComponentComputerItem" />
+        <EntityTypeShape EntityType="ComputersShop.Buyer" Width="1.5" PointX="6.625" PointY="0.75" />
+        <EntityTypeShape EntityType="ComputersShop.Check" Width="1.5" PointX="6.625" PointY="3.375" />
+        <AssociationConnector Association="ComputersShop.BuyerCheck" />
+        <EntityTypeShape EntityType="ComputersShop.CheckItem" Width="1.5" PointX="9.125" PointY="3.375" />
+        <AssociationConnector Association="ComputersShop.CheckCheckItem" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
