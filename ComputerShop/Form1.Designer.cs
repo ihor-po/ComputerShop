@@ -34,6 +34,7 @@
             this.mf_gr_func = new System.Windows.Forms.GroupBox();
             this.mf_data = new System.Windows.Forms.DataGridView();
             this.mf_addCategoryBtn = new System.Windows.Forms.Button();
+            this.mf_CreateComponent = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.mf_gr_func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).BeginInit();
@@ -68,6 +69,7 @@
             // 
             // mf_gr_func
             // 
+            this.mf_gr_func.Controls.Add(this.mf_CreateComponent);
             this.mf_gr_func.Controls.Add(this.mf_addCategoryBtn);
             this.mf_gr_func.Dock = System.Windows.Forms.DockStyle.Right;
             this.mf_gr_func.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -102,6 +104,16 @@
             this.mf_addCategoryBtn.Text = "Добавить категорию";
             this.mf_addCategoryBtn.UseVisualStyleBackColor = true;
             // 
+            // mf_CreateComponent
+            // 
+            this.mf_CreateComponent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_CreateComponent.Location = new System.Drawing.Point(6, 90);
+            this.mf_CreateComponent.Name = "mf_CreateComponent";
+            this.mf_CreateComponent.Size = new System.Drawing.Size(240, 47);
+            this.mf_CreateComponent.TabIndex = 1;
+            this.mf_CreateComponent.Text = "Добавить компонент";
+            this.mf_CreateComponent.UseVisualStyleBackColor = true;
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.GroupBox mf_gr_func;
         private System.Windows.Forms.Button mf_addCategoryBtn;
         private System.Windows.Forms.DataGridView mf_data;
+        private System.Windows.Forms.Button mf_CreateComponent;
     }
 }
 

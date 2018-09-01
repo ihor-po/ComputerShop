@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/01/2018 09:49:36
+-- Date Created: 09/01/2018 21:04:24
 -- Generated from EDMX file: \\mac\iCloud\Step\ADO.NET\DZ\ComputerShop\ComputerShop\ComputersShop.edmx
 -- --------------------------------------------------
 
@@ -17,37 +17,28 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_BuyerCheck]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Check] DROP CONSTRAINT [FK_BuyerCheck];
-GO
 IF OBJECT_ID(N'[dbo].[FK_CategoryComponent]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Component] DROP CONSTRAINT [FK_CategoryComponent];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CheckCheckItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CheckItem] DROP CONSTRAINT [FK_CheckCheckItem];
+IF OBJECT_ID(N'[dbo].[FK_ComputerComputerItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ComputerItem] DROP CONSTRAINT [FK_ComputerComputerItem];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ComponentComputerItem]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ComputerItem] DROP CONSTRAINT [FK_ComponentComputerItem];
 GO
-IF OBJECT_ID(N'[dbo].[FK_ComputerComputerItem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ComputerItem] DROP CONSTRAINT [FK_ComputerComputerItem];
+IF OBJECT_ID(N'[dbo].[FK_BuyerCheck]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Check] DROP CONSTRAINT [FK_BuyerCheck];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CheckCheckItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CheckItem] DROP CONSTRAINT [FK_CheckCheckItem];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Buyer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Buyer];
-GO
 IF OBJECT_ID(N'[dbo].[Category]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Category];
-GO
-IF OBJECT_ID(N'[dbo].[Check]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Check];
-GO
-IF OBJECT_ID(N'[dbo].[CheckItem]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CheckItem];
 GO
 IF OBJECT_ID(N'[dbo].[Component]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Component];
@@ -57,6 +48,15 @@ IF OBJECT_ID(N'[dbo].[Computer]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ComputerItem]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ComputerItem];
+GO
+IF OBJECT_ID(N'[dbo].[Buyer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Buyer];
+GO
+IF OBJECT_ID(N'[dbo].[Check]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Check];
+GO
+IF OBJECT_ID(N'[dbo].[CheckItem]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CheckItem];
 GO
 
 -- --------------------------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Component] (
     [Title] nvarchar(30)  NOT NULL,
     [CategoryId] int  NOT NULL,
     [Vendor_code] nvarchar(max)  NOT NULL,
-    [Price] float  NOT NULL,
+    [Price] decimal(18,0)  NOT NULL,
     [Quantity] smallint  NOT NULL,
     [Description] nvarchar(max)  NOT NULL
 );

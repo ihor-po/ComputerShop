@@ -25,7 +25,7 @@ namespace ComputerShop
         public string Title { get; set; }
         public int CategoryId { get; set; }
         public string Vendor_code { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public short Quantity { get; set; }
         public string Description { get; set; }
     
