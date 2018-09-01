@@ -4,157 +4,158 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ComputersShop.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Buyer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Phone" Type="nchar" MaxLength="12" />
-        </EntityType>
-        <EntityType Name="Category">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Check">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BuyerId" Type="int" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CheckItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CheckId" Type="int" Nullable="false" />
-          <Property Name="ItemId" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsComputer" Type="tinyint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Component">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
-          <Property Name="Vendor_code" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="Quantity" Type="smallint" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Computer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ComputerItem">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ComputerId" Type="int" Nullable="false" />
-          <Property Name="ComponentId" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_BuyerCheck">
-          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
-          <End Role="Check" Type="Self.Check" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Buyer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Check">
-              <PropertyRef Name="BuyerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryComponent">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Component" Type="Self.Component" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Component">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CheckCheckItem">
-          <End Role="Check" Type="Self.Check" Multiplicity="1" />
-          <End Role="CheckItem" Type="Self.CheckItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Check">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CheckItem">
-              <PropertyRef Name="CheckId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComponentComputerItem">
-          <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="ComputerItem" Type="Self.ComputerItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComputerItem">
-              <PropertyRef Name="ComponentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ComputerComputerItem">
-          <End Role="Computer" Type="Self.Computer" Multiplicity="1" />
-          <End Role="ComputerItem" Type="Self.ComputerItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Computer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ComputerItem">
-              <PropertyRef Name="ComputerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ComputersShopStoreContainer">
-          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Check" EntityType="Self.Check" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CheckItem" EntityType="Self.CheckItem" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ComputerItem" EntityType="Self.ComputerItem" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_BuyerCheck" Association="Self.FK_BuyerCheck">
-            <End Role="Buyer" EntitySet="Buyer" />
-            <End Role="Check" EntitySet="Check" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryComponent" Association="Self.FK_CategoryComponent">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Component" EntitySet="Component" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CheckCheckItem" Association="Self.FK_CheckCheckItem">
-            <End Role="Check" EntitySet="Check" />
-            <End Role="CheckItem" EntitySet="CheckItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComponentComputerItem" Association="Self.FK_ComponentComputerItem">
-            <End Role="Component" EntitySet="Component" />
-            <End Role="ComputerItem" EntitySet="ComputerItem" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ComputerComputerItem" Association="Self.FK_ComputerComputerItem">
-            <End Role="Computer" EntitySet="Computer" />
-            <End Role="ComputerItem" EntitySet="ComputerItem" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="ComputersShop.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ComputersShopStoreContainer">
+    <EntitySet Name="Category" EntityType="ComputersShop.Store.Category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Component" EntityType="ComputersShop.Store.Component" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Computer" EntityType="ComputersShop.Store.Computer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ComputerItem" EntityType="ComputersShop.Store.ComputerItem" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Buyer" EntityType="ComputersShop.Store.Buyer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Check" EntityType="ComputersShop.Store.Check" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CheckItem" EntityType="ComputersShop.Store.CheckItem" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CategoryComponent" Association="ComputersShop.Store.CategoryComponent">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Component" EntitySet="Component" />
+    </AssociationSet>
+    <AssociationSet Name="ComputerComputerItem" Association="ComputersShop.Store.ComputerComputerItem">
+      <End Role="Computer" EntitySet="Computer" />
+      <End Role="ComputerItem" EntitySet="ComputerItem" />
+    </AssociationSet>
+    <AssociationSet Name="ComponentComputerItem" Association="ComputersShop.Store.ComponentComputerItem">
+      <End Role="Component" EntitySet="Component" />
+      <End Role="ComputerItem" EntitySet="ComputerItem" />
+    </AssociationSet>
+    <AssociationSet Name="BuyerCheck" Association="ComputersShop.Store.BuyerCheck">
+      <End Role="Buyer" EntitySet="Buyer" />
+      <End Role="Check" EntitySet="Check" />
+    </AssociationSet>
+    <AssociationSet Name="CheckCheckItem" Association="ComputersShop.Store.CheckCheckItem">
+      <End Role="Check" EntitySet="Check" />
+      <End Role="CheckItem" EntitySet="CheckItem" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Component">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Vendor_code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Computer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="ComputerItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ComputerId" Type="int" Nullable="false" />
+    <Property Name="ComponentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Buyer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Phone" Type="nchar" Nullable="true" MaxLength="12" />
+  </EntityType>
+  <EntityType Name="Check">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuyerId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="CheckCoast" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CheckItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CheckId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsComputer" Type="tinyint" Nullable="false" DefaultValue="0" />
+  </EntityType>
+  <Association Name="CategoryComponent">
+    <End Role="Category" Type="ComputersShop.Store.Category" Multiplicity="1" />
+    <End Role="Component" Type="ComputersShop.Store.Component" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Component">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComputerComputerItem">
+    <End Role="Computer" Type="ComputersShop.Store.Computer" Multiplicity="1" />
+    <End Role="ComputerItem" Type="ComputersShop.Store.ComputerItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Computer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ComputerItem">
+        <PropertyRef Name="ComputerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ComponentComputerItem">
+    <End Role="Component" Type="ComputersShop.Store.Component" Multiplicity="1" />
+    <End Role="ComputerItem" Type="ComputersShop.Store.ComputerItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Component">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ComputerItem">
+        <PropertyRef Name="ComponentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BuyerCheck">
+    <End Role="Buyer" Type="ComputersShop.Store.Buyer" Multiplicity="1" />
+    <End Role="Check" Type="ComputersShop.Store.Check" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buyer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Check">
+        <PropertyRef Name="BuyerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CheckCheckItem">
+    <End Role="Check" Type="ComputersShop.Store.Check" Multiplicity="1" />
+    <End Role="CheckItem" Type="ComputersShop.Store.CheckItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Check">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CheckItem">
+        <PropertyRef Name="CheckId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ComputersShop" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -282,6 +283,7 @@
           <Property Name="BuyerId" Type="Int32" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="CheckItem" Relationship="ComputersShop.CheckCheckItem" FromRole="Check" ToRole="CheckItem" />
+          <Property Name="CheckCoast" Type="Double" Nullable="false" />
         </EntityType>
         <Association Name="BuyerCheck">
           <End Type="ComputersShop.Buyer" Role="Buyer" Multiplicity="1" />
@@ -377,6 +379,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="CheckCoast" ColumnName="CheckCoast" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

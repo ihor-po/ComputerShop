@@ -23,6 +23,7 @@ namespace ComputerShop
         public int Id { get; set; }
         public int BuyerId { get; set; }
         public System.DateTime Date { get; set; }
+        public double CheckCoast { get; set; }
     
         public virtual Buyer Buyer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

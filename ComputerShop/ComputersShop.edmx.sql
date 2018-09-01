@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/31/2018 23:18:27
+-- Date Created: 09/01/2018 09:49:36
 -- Generated from EDMX file: \\mac\iCloud\Step\ADO.NET\DZ\ComputerShop\ComputerShop\ComputersShop.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,47 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_BuyerCheck]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Check] DROP CONSTRAINT [FK_BuyerCheck];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CategoryComponent]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Component] DROP CONSTRAINT [FK_CategoryComponent];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CheckCheckItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CheckItem] DROP CONSTRAINT [FK_CheckCheckItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ComponentComputerItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ComputerItem] DROP CONSTRAINT [FK_ComponentComputerItem];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ComputerComputerItem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ComputerItem] DROP CONSTRAINT [FK_ComputerComputerItem];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[Buyer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Buyer];
+GO
+IF OBJECT_ID(N'[dbo].[Category]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Category];
+GO
+IF OBJECT_ID(N'[dbo].[Check]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Check];
+GO
+IF OBJECT_ID(N'[dbo].[CheckItem]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CheckItem];
+GO
+IF OBJECT_ID(N'[dbo].[Component]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Component];
+GO
+IF OBJECT_ID(N'[dbo].[Computer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Computer];
+GO
+IF OBJECT_ID(N'[dbo].[ComputerItem]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ComputerItem];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -74,7 +110,8 @@ GO
 CREATE TABLE [dbo].[Check] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [BuyerId] int  NOT NULL,
-    [Date] datetime  NOT NULL
+    [Date] datetime  NOT NULL,
+    [CheckCoast] float  NOT NULL
 );
 GO
 
