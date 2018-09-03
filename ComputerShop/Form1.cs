@@ -37,7 +37,24 @@ namespace ComputerShop
 
             mf_addCategoryBtn.Click += Mf_addCategoryBtn_Click;
             mf_CreateComponent.Click += Mf_CreateComponent_Click;
+            mf_createComputer.Click += Mf_createComputer_Click;
         }
+
+        /// <summary>
+        /// Добавление компьютера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Mf_createComputer_Click(object sender, EventArgs e)
+        {
+            ComputerForm cf = new ComputerForm(db.Category.ToList(), db.Component.ToList());
+
+            if (cf.ShowDialog() == DialogResult.OK)
+            {
+
+            }
+        }
+
         /// <summary>
         /// Обработка нажатия кнопки добавить компонент
         /// </summary>
