@@ -51,8 +51,6 @@ namespace ComputerShop
             cf.c_cb_category.ValueMember = "Id";
             cf.c_cb_category.DisplayMember = "Title";
 
-            //cf.c_cb_category.Items.AddRange(db.Category.Select(c => c.Title).ToArray());
-
             if (cf.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -89,7 +87,7 @@ namespace ComputerShop
                     db.Component.Add(component);
                     db.SaveChanges();
 
-                    MessageBox.Show("Новая категория добавлена");
+                    MessageBox.Show("Новый компонент добавлен!");
                 }
                 catch (Exception ex)
                 {

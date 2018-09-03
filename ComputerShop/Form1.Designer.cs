@@ -32,9 +32,10 @@
             this.mf_sb_total_label = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_sb_totalCoast = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_gr_func = new System.Windows.Forms.GroupBox();
-            this.mf_data = new System.Windows.Forms.DataGridView();
-            this.mf_addCategoryBtn = new System.Windows.Forms.Button();
             this.mf_CreateComponent = new System.Windows.Forms.Button();
+            this.mf_addCategoryBtn = new System.Windows.Forms.Button();
+            this.mf_data = new System.Windows.Forms.DataGridView();
+            this.mf_createComputer = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.mf_gr_func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).BeginInit();
@@ -69,6 +70,7 @@
             // 
             // mf_gr_func
             // 
+            this.mf_gr_func.Controls.Add(this.mf_createComputer);
             this.mf_gr_func.Controls.Add(this.mf_CreateComponent);
             this.mf_gr_func.Controls.Add(this.mf_addCategoryBtn);
             this.mf_gr_func.Dock = System.Windows.Forms.DockStyle.Right;
@@ -80,6 +82,26 @@
             this.mf_gr_func.TabIndex = 1;
             this.mf_gr_func.TabStop = false;
             this.mf_gr_func.Text = "Функционал";
+            // 
+            // mf_CreateComponent
+            // 
+            this.mf_CreateComponent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_CreateComponent.Location = new System.Drawing.Point(6, 90);
+            this.mf_CreateComponent.Name = "mf_CreateComponent";
+            this.mf_CreateComponent.Size = new System.Drawing.Size(240, 47);
+            this.mf_CreateComponent.TabIndex = 1;
+            this.mf_CreateComponent.Text = "Добавить компонент";
+            this.mf_CreateComponent.UseVisualStyleBackColor = true;
+            // 
+            // mf_addCategoryBtn
+            // 
+            this.mf_addCategoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_addCategoryBtn.Location = new System.Drawing.Point(6, 28);
+            this.mf_addCategoryBtn.Name = "mf_addCategoryBtn";
+            this.mf_addCategoryBtn.Size = new System.Drawing.Size(240, 47);
+            this.mf_addCategoryBtn.TabIndex = 0;
+            this.mf_addCategoryBtn.Text = "Добавить категорию";
+            this.mf_addCategoryBtn.UseVisualStyleBackColor = true;
             // 
             // mf_data
             // 
@@ -94,25 +116,15 @@
             this.mf_data.Size = new System.Drawing.Size(806, 456);
             this.mf_data.TabIndex = 2;
             // 
-            // mf_addCategoryBtn
+            // mf_createComputer
             // 
-            this.mf_addCategoryBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mf_addCategoryBtn.Location = new System.Drawing.Point(6, 28);
-            this.mf_addCategoryBtn.Name = "mf_addCategoryBtn";
-            this.mf_addCategoryBtn.Size = new System.Drawing.Size(240, 47);
-            this.mf_addCategoryBtn.TabIndex = 0;
-            this.mf_addCategoryBtn.Text = "Добавить категорию";
-            this.mf_addCategoryBtn.UseVisualStyleBackColor = true;
-            // 
-            // mf_CreateComponent
-            // 
-            this.mf_CreateComponent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mf_CreateComponent.Location = new System.Drawing.Point(6, 90);
-            this.mf_CreateComponent.Name = "mf_CreateComponent";
-            this.mf_CreateComponent.Size = new System.Drawing.Size(240, 47);
-            this.mf_CreateComponent.TabIndex = 1;
-            this.mf_CreateComponent.Text = "Добавить компонент";
-            this.mf_CreateComponent.UseVisualStyleBackColor = true;
+            this.mf_createComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_createComputer.Location = new System.Drawing.Point(6, 153);
+            this.mf_createComputer.Name = "mf_createComputer";
+            this.mf_createComputer.Size = new System.Drawing.Size(240, 47);
+            this.mf_createComputer.TabIndex = 2;
+            this.mf_createComputer.Text = "Добавить компьютер";
+            this.mf_createComputer.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
@@ -143,6 +155,7 @@
         private System.Windows.Forms.Button mf_addCategoryBtn;
         private System.Windows.Forms.DataGridView mf_data;
         private System.Windows.Forms.Button mf_CreateComponent;
+        private System.Windows.Forms.Button mf_createComputer;
     }
 }
 
