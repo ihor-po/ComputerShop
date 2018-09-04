@@ -17,6 +17,10 @@ namespace ComputerShop
 
         ComputersShopContainer1 db;
 
+        ComboBox cbTmp;
+        Button btnTmp;
+        TextBox tbTmp;
+
         protected const string regText = @"(?m)^.[a-zA-Zа-яА-Я0-9 -]{2,30}(?=\r?$)";
         protected const string regCode = @"(?m)^[A-Z0-9]{13}$";
 
@@ -47,12 +51,25 @@ namespace ComputerShop
         /// <param name="e"></param>
         private void Mf_createComputer_Click(object sender, EventArgs e)
         {
-            ComputerForm cf = new ComputerForm(db.Category.ToList(), db.Component.ToList());
+            ComputerForm cf = new ComputerForm();
+
+
+            cf.cf_cb_category.SelectedIndexChanged += Cf_cb_category_SelectedIndexChanged;
 
             if (cf.ShowDialog() == DialogResult.OK)
             {
-
+                
             }
+        }
+
+        /// <summary>
+        /// Событи изменения индекса у комбобокса
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cf_cb_category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
 
         /// <summary>

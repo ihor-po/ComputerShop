@@ -107,6 +107,7 @@
             // 
             this.cf_cb_component.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cf_cb_component.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cf_cb_component.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cf_cb_component.FormattingEnabled = true;
             this.cf_cb_component.Location = new System.Drawing.Point(110, 75);
             this.cf_cb_component.Name = "cf_cb_component";
@@ -133,11 +134,16 @@
             // 
             // cf_lv_components
             // 
+            this.cf_lv_components.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cf_lv_components.FullRowSelect = true;
+            this.cf_lv_components.GridLines = true;
+            this.cf_lv_components.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.cf_lv_components.Location = new System.Drawing.Point(469, 47);
             this.cf_lv_components.Name = "cf_lv_components";
             this.cf_lv_components.Size = new System.Drawing.Size(378, 314);
             this.cf_lv_components.TabIndex = 3;
             this.cf_lv_components.UseCompatibleStateImageBehavior = false;
+            this.cf_lv_components.View = System.Windows.Forms.View.Details;
             // 
             // label4
             // 
@@ -199,14 +205,14 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cf_cb_component;
-        private System.Windows.Forms.ComboBox cf_cb_category;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button cf_btn_addItem;
-        private System.Windows.Forms.TextBox cf_tb_description;
         private System.Windows.Forms.ListView cf_lv_components;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button cf_btn_cancel;
         private System.Windows.Forms.Button cf_btn_addComputer;
+        protected internal System.Windows.Forms.ComboBox cf_cb_category;
+        protected internal System.Windows.Forms.ComboBox cf_cb_component;
+        protected internal System.Windows.Forms.Button cf_btn_addItem;
+        protected internal System.Windows.Forms.TextBox cf_tb_description;
     }
 }
