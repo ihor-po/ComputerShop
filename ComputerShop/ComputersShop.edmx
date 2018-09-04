@@ -59,6 +59,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Price" Type="decimal" Nullable="false" />
   </EntityType>
   <EntityType Name="ComputerItem">
     <Key>
@@ -229,6 +230,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="ComputerItem" Relationship="ComputersShop.ComputerComputerItem" FromRole="Computer" ToRole="ComputerItem" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
         </EntityType>
         <EntityType Name="ComputerItem">
           <Key>
@@ -351,6 +353,7 @@
         <MappingFragment StoreEntitySet="Computer">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
