@@ -44,7 +44,20 @@ namespace ComputerShop.Forms
             cf_cb_component.SelectedIndexChanged += Cf_cb_component_SelectedIndexChanged;
             cf_btn_addItem.Click += Cf_btn_addItem_Click;
             cf_btn_addComputer.Click += Cf_btn_addComputer_Click;
+            cf_lv_components.MouseDoubleClick += Cf_lv_components_MouseDoubleClick;
         }
+
+        private void Cf_lv_components_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (cf_lv_components.SelectedItems[0] != null)
+            {
+                if (MessageBox.Show("Удалить компонент?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    cf_lv_components.Items.Remove(cf_lv_components.SelectedItems[0]);
+                }
+            }
+        }
+
 
         /// <summary>
         /// Добавление компьютера в БД
@@ -59,12 +72,14 @@ namespace ComputerShop.Forms
                 {
                     try
                     {
+                        //Сохранение компьютера в БД
                         Computer comp = new Computer();
                         comp.Title = cf_tb_computerName.Text;
                         comp.Price = Convert.ToDecimal(string.Format("{0:0.00}", totalPrice.ToString()));
                         cf_db.Computer.Add(comp);
                         cf_db.SaveChanges();
 
+                        //Сохранение компонентов в БД
                         foreach (ListViewItem item in cf_lv_components.Items)
                         {
                             ComputerItem ci = new ComputerItem();

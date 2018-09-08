@@ -145,6 +145,7 @@
             this.cf_lv_components.GridLines = true;
             this.cf_lv_components.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.cf_lv_components.Location = new System.Drawing.Point(469, 47);
+            this.cf_lv_components.MultiSelect = false;
             this.cf_lv_components.Name = "cf_lv_components";
             this.cf_lv_components.Size = new System.Drawing.Size(378, 314);
             this.cf_lv_components.TabIndex = 3;
