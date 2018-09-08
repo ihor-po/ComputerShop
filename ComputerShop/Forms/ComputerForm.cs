@@ -13,6 +13,7 @@ namespace ComputerShop.Forms
     public partial class ComputerForm : Form
     {
         ComputersShopContainer1 cf_db;
+        double totalPrice;
 
         public ComputerForm()
         {
@@ -25,6 +26,8 @@ namespace ComputerShop.Forms
 
         private void ComputerForm_Load(object sender, EventArgs e)
         {
+            totalPrice = 0.00;
+
             cf_cb_category.DataSource = cf_db.Category.ToList();
             cf_cb_category.ValueMember = "Id";
             cf_cb_category.DisplayMember = "Title";
@@ -39,6 +42,11 @@ namespace ComputerShop.Forms
             cf_btn_addItem.Click += Cf_btn_addItem_Click;
         }
 
+        /// <summary>
+        /// Добавление компонента в список составляющих компьютера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cf_btn_addItem_Click(object sender, EventArgs e)
         {
             if (cf_lv_components.Columns.Count == 0)
@@ -49,7 +57,6 @@ namespace ComputerShop.Forms
                 cf_lv_components.Columns[1].Width = 250;
                 cf_lv_components.Columns.Add("Цена");
                 cf_lv_components.Columns[2].Width = 87;
-                //cf_lv_components.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
             Component cmpt = cf_db.Component.FirstOrDefault(c => c.Id == (int)cf_cb_component.SelectedValue);
             ListViewItem item = new ListViewItem(cmpt.Id.ToString());
@@ -57,6 +64,9 @@ namespace ComputerShop.Forms
             item.SubItems.Add(cmpt.Price.ToString());
 
             cf_lv_components.Items.Add(item);
+
+            totalPrice += ((double)cmpt.Price * 1.15);
+            cf_l_totalPrice.Text = totalPrice.ToString();
         }
 
         private void Cf_cb_component_SelectedIndexChanged(object sender, EventArgs e)

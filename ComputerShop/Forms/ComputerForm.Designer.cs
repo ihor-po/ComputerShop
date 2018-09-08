@@ -41,6 +41,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cf_btn_cancel = new System.Windows.Forms.Button();
             this.cf_btn_addComputer = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cf_l_totalPrice = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +66,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cf_btn_addItem);
             this.groupBox1.Controls.Add(this.cf_tb_description);
             this.groupBox1.Controls.Add(this.label3);
@@ -174,11 +180,54 @@
             this.cf_btn_addComputer.Text = "Добавить компьютер";
             this.cf_btn_addComputer.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 384);
+            this.label5.Name = "label5";
+            this.label5.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label5.Size = new System.Drawing.Size(191, 20);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Стоимость компьютера";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(11, 259);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(172, 17);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Сборка компьютера 15%";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(11, 279);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(186, 17);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "от стоимости компонентов";
+            // 
+            // cf_l_totalPrice
+            // 
+            this.cf_l_totalPrice.AutoSize = true;
+            this.cf_l_totalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.cf_l_totalPrice.ForeColor = System.Drawing.Color.Maroon;
+            this.cf_l_totalPrice.Location = new System.Drawing.Point(220, 372);
+            this.cf_l_totalPrice.Name = "cf_l_totalPrice";
+            this.cf_l_totalPrice.Size = new System.Drawing.Size(101, 46);
+            this.cf_l_totalPrice.TabIndex = 8;
+            this.cf_l_totalPrice.Text = "0,00";
+            // 
             // ComputerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(865, 427);
+            this.Controls.Add(this.cf_l_totalPrice);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cf_btn_addComputer);
             this.Controls.Add(this.cf_btn_cancel);
             this.Controls.Add(this.label4);
@@ -189,6 +238,8 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ComputerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Добавление компьютера";
@@ -214,5 +265,9 @@
         protected internal System.Windows.Forms.ComboBox cf_cb_component;
         protected internal System.Windows.Forms.Button cf_btn_addItem;
         protected internal System.Windows.Forms.TextBox cf_tb_description;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label cf_l_totalPrice;
     }
 }
