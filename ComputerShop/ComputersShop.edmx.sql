@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Component] (
     [Title] nvarchar(30)  NOT NULL,
     [CategoryId] int  NOT NULL,
     [Vendor_code] nvarchar(max)  NOT NULL,
-    [Price] decimal(18,0)  NOT NULL,
+    [Price] decimal(18,2)  NOT NULL,
     [Quantity] smallint  NOT NULL,
     [Description] nvarchar(max)  NOT NULL
 );
@@ -86,7 +86,7 @@ GO
 CREATE TABLE [dbo].[Computer] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(30)  NOT NULL,
-    [Price] decimal(18,0)  NOT NULL
+    [Price] decimal(18,2)  NOT NULL
 );
 GO
 

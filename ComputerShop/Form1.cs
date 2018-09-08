@@ -53,23 +53,10 @@ namespace ComputerShop
         {
             ComputerForm cf = new ComputerForm();
 
-
-            cf.cf_cb_category.SelectedIndexChanged += Cf_cb_category_SelectedIndexChanged;
-
             if (cf.ShowDialog() == DialogResult.OK)
             {
-                
+                MessageBox.Show("Новый комьютер добавлен");
             }
-        }
-
-        /// <summary>
-        /// Событи изменения индекса у комбобокса
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Cf_cb_category_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
         }
 
         /// <summary>

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cf_tb_computerName = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cf_btn_addItem = new System.Windows.Forms.Button();
             this.cf_tb_description = new System.Windows.Forms.TextBox();
@@ -57,12 +57,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Название";
             // 
-            // textBox1
+            // cf_tb_computerName
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(315, 26);
-            this.textBox1.TabIndex = 1;
+            this.cf_tb_computerName.Location = new System.Drawing.Point(137, 20);
+            this.cf_tb_computerName.Name = "cf_tb_computerName";
+            this.cf_tb_computerName.Size = new System.Drawing.Size(315, 26);
+            this.cf_tb_computerName.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -233,7 +233,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cf_lv_components);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cf_tb_computerName);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -253,7 +253,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox cf_tb_computerName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

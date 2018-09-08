@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,8 +13,10 @@ namespace ComputerShop.Forms
 {
     public partial class ComputerForm : Form
     {
-        ComputersShopContainer1 cf_db;
-        double totalPrice;
+        private const double assemblyPersent = 1.15; //константа для расчета стоимости (15% за сборку)
+        private const string regText = @"(?m)^.[a-zA-Zа-яА-Я0-9 -]{2,30}(?=\r?$)";
+        private ComputersShopContainer1 cf_db;
+        private double totalPrice;
 
         public ComputerForm()
         {
@@ -40,6 +43,52 @@ namespace ComputerShop.Forms
             cf_cb_category.SelectedIndexChanged += Cf_cb_category_SelectedIndexChanged;
             cf_cb_component.SelectedIndexChanged += Cf_cb_component_SelectedIndexChanged;
             cf_btn_addItem.Click += Cf_btn_addItem_Click;
+            cf_btn_addComputer.Click += Cf_btn_addComputer_Click;
+        }
+
+        /// <summary>
+        /// Добавление компьютера в БД
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Cf_btn_addComputer_Click(object sender, EventArgs e)
+        {
+            if (cf_tb_computerName.Text != "")
+            {
+                if (Regex.IsMatch(cf_tb_computerName.Text, regText))
+                {
+                    try
+                    {
+                        Computer comp = new Computer();
+                        comp.Title = cf_tb_computerName.Text;
+                        comp.Price = Convert.ToDecimal(string.Format("{0:0.00}", totalPrice.ToString()));
+                        cf_db.Computer.Add(comp);
+                        cf_db.SaveChanges();
+
+                        foreach (ListViewItem item in cf_lv_components.Items)
+                        {
+                            ComputerItem ci = new ComputerItem();
+                            ci.ComputerId = comp.Id;
+                            ci.ComponentId = Convert.ToInt32(item.Text.ToString());
+
+                            cf_db.ComputerItem.Add(ci);
+                            cf_db.SaveChanges();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowMessage(ex.Message);
+                    }
+                }
+                else
+                {
+                    throw new Exception("Ошибка в названии компьютера");
+                }
+            }
+            else
+            {
+                ShowMessage("Введите название компьютера!");
+            }
         }
 
         /// <summary>
@@ -65,10 +114,15 @@ namespace ComputerShop.Forms
 
             cf_lv_components.Items.Add(item);
 
-            totalPrice += ((double)cmpt.Price * 1.15);
+            totalPrice += ((double)cmpt.Price * assemblyPersent);
             cf_l_totalPrice.Text = totalPrice.ToString();
         }
 
+        /// <summary>
+        /// Событие изменения выбранного компонента
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cf_cb_component_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cb = sender as ComboBox;
@@ -83,13 +137,18 @@ namespace ComputerShop.Forms
             }
         }
 
+        /// <summary>
+        /// Событие изменения выбранной категории
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cf_cb_category_SelectedIndexChanged(object sender, EventArgs e)
         {
             FillComponentsByCategory(Convert.ToInt32(cf_cb_category.SelectedValue.ToString()));
         }
 
         /// <summary>
-        /// Заполнение нужного комбобокса с компонентами по айди категории
+        /// Заполнение комбобокса с компонентами по айди категории
         /// </summary>
         /// <param name="cb"></param>
         /// <param name="categoryId"></param>
