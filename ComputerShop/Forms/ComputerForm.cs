@@ -53,6 +53,12 @@ namespace ComputerShop.Forms
             {
                 if (MessageBox.Show("Удалить компонент?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
+                    if (totalPrice != 0)
+                    {
+                        totalPrice -= (Convert.ToDouble(cf_lv_components.SelectedItems[0].SubItems[2].Text) * assemblyPersent);
+                        cf_l_totalPrice.Text = totalPrice.ToString();
+                    }
+
                     cf_lv_components.Items.Remove(cf_lv_components.SelectedItems[0]);
                 }
             }
@@ -68,41 +74,57 @@ namespace ComputerShop.Forms
         {
             if (cf_tb_computerName.Text != "")
             {
-                if (Regex.IsMatch(cf_tb_computerName.Text, regText))
+                if (cf_lv_components.Items.Count != 0)
                 {
-                    try
+                    if (Regex.IsMatch(cf_tb_computerName.Text, regText))
                     {
-                        //Сохранение компьютера в БД
-                        Computer comp = new Computer();
-                        comp.Title = cf_tb_computerName.Text;
-                        comp.Price = Convert.ToDecimal(string.Format("{0:0.00}", totalPrice.ToString()));
-                        cf_db.Computer.Add(comp);
-                        cf_db.SaveChanges();
-
-                        //Сохранение компонентов в БД
-                        foreach (ListViewItem item in cf_lv_components.Items)
+                        using (var transaction = cf_db.Database.BeginTransaction())
                         {
-                            ComputerItem ci = new ComputerItem();
-                            ci.ComputerId = comp.Id;
-                            ci.ComponentId = Convert.ToInt32(item.Text.ToString());
+                            try
+                            {
+                                //Сохранение компьютера в БД
+                                Computer comp = new Computer();
+                                comp.Title = cf_tb_computerName.Text;
+                                comp.Price = Convert.ToDecimal(string.Format("{0:0.00}", totalPrice.ToString()));
+                                cf_db.Computer.Add(comp);
+                                cf_db.SaveChanges();
 
-                            cf_db.ComputerItem.Add(ci);
-                            cf_db.SaveChanges();
+
+                                //Сохранение компонентов в БД
+                                foreach (ListViewItem item in cf_lv_components.Items)
+                                {
+                                    ComputerItem ci = new ComputerItem();
+                                    ci.ComputerId = comp.Id;
+                                    ci.ComponentId = Convert.ToInt32(item.Text.ToString());
+
+                                    cf_db.ComputerItem.Add(ci);
+                                    cf_db.SaveChanges();
+                                }
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                ShowMessage(ex.Message);
+                                transaction.Rollback();
+                            }
                         }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        ShowMessage(ex.Message);
+                        ShowMessage("Ошибка в названии компьютера");
+                        this.DialogResult = DialogResult.None;
                     }
                 }
                 else
                 {
-                    throw new Exception("Ошибка в названии компьютера");
+                    ShowMessage("Компоненты не добавлены!");
+                    this.DialogResult = DialogResult.None;
                 }
             }
             else
             {
                 ShowMessage("Введите название компьютера!");
+                this.DialogResult = DialogResult.None;
             }
         }
 
