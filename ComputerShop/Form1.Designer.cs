@@ -32,10 +32,11 @@
             this.mf_sb_total_label = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_sb_totalCoast = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_gr_func = new System.Windows.Forms.GroupBox();
+            this.mf_createComputer = new System.Windows.Forms.Button();
             this.mf_CreateComponent = new System.Windows.Forms.Button();
             this.mf_addCategoryBtn = new System.Windows.Forms.Button();
             this.mf_data = new System.Windows.Forms.DataGridView();
-            this.mf_createComputer = new System.Windows.Forms.Button();
+            this.mf_creatSelling = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.mf_gr_func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).BeginInit();
@@ -70,6 +71,7 @@
             // 
             // mf_gr_func
             // 
+            this.mf_gr_func.Controls.Add(this.mf_creatSelling);
             this.mf_gr_func.Controls.Add(this.mf_createComputer);
             this.mf_gr_func.Controls.Add(this.mf_CreateComponent);
             this.mf_gr_func.Controls.Add(this.mf_addCategoryBtn);
@@ -82,6 +84,16 @@
             this.mf_gr_func.TabIndex = 1;
             this.mf_gr_func.TabStop = false;
             this.mf_gr_func.Text = "Функционал";
+            // 
+            // mf_createComputer
+            // 
+            this.mf_createComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_createComputer.Location = new System.Drawing.Point(6, 153);
+            this.mf_createComputer.Name = "mf_createComputer";
+            this.mf_createComputer.Size = new System.Drawing.Size(240, 47);
+            this.mf_createComputer.TabIndex = 2;
+            this.mf_createComputer.Text = "Добавить компьютер";
+            this.mf_createComputer.UseVisualStyleBackColor = true;
             // 
             // mf_CreateComponent
             // 
@@ -116,15 +128,15 @@
             this.mf_data.Size = new System.Drawing.Size(806, 456);
             this.mf_data.TabIndex = 2;
             // 
-            // mf_createComputer
+            // mf_creatSelling
             // 
-            this.mf_createComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mf_createComputer.Location = new System.Drawing.Point(6, 153);
-            this.mf_createComputer.Name = "mf_createComputer";
-            this.mf_createComputer.Size = new System.Drawing.Size(240, 47);
-            this.mf_createComputer.TabIndex = 2;
-            this.mf_createComputer.Text = "Добавить компьютер";
-            this.mf_createComputer.UseVisualStyleBackColor = true;
+            this.mf_creatSelling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_creatSelling.Location = new System.Drawing.Point(6, 217);
+            this.mf_creatSelling.Name = "mf_creatSelling";
+            this.mf_creatSelling.Size = new System.Drawing.Size(240, 47);
+            this.mf_creatSelling.TabIndex = 3;
+            this.mf_creatSelling.Text = "Создать продажу";
+            this.mf_creatSelling.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
@@ -156,6 +168,7 @@
         private System.Windows.Forms.DataGridView mf_data;
         private System.Windows.Forms.Button mf_CreateComponent;
         private System.Windows.Forms.Button mf_createComputer;
+        private System.Windows.Forms.Button mf_creatSelling;
     }
 }
 

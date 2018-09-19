@@ -42,6 +42,22 @@ namespace ComputerShop
             mf_addCategoryBtn.Click += Mf_addCategoryBtn_Click;
             mf_CreateComponent.Click += Mf_CreateComponent_Click;
             mf_createComputer.Click += Mf_createComputer_Click;
+            mf_creatSelling.Click += Mf_creatSelling_Click;
+        }
+
+        /// <summary>
+        /// Обработка нажатия кнопки создать продажу
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Mf_creatSelling_Click(object sender, EventArgs e)
+        {
+            SellingForm sf = new SellingForm();
+
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                FillData();
+            }
         }
 
         /// <summary>
