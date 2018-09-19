@@ -48,7 +48,7 @@ namespace ComputerShop.Forms
             }
             else
             {
-
+                GetComputerBalance(cb);
             }
             MessageBox.Show(cb.SelectedValue.ToString());
         }
@@ -115,6 +115,44 @@ namespace ComputerShop.Forms
             {
                 sf_lbl_balance.Text = cmpt.Quantity.ToString();
                 sf_num_quantity.Maximum = cmpt.Quantity; // установка максимального значения
+            }
+            else
+            {
+                sf_lbl_balance.Text = "0";
+                sf_num_quantity.Maximum = 0;
+            }
+        }
+
+        private void GetComputerBalance(ComboBox cb)
+        {
+            Computer comp = sf_db.Computer.FirstOrDefault(c => c.Id == (int)cb.SelectedValue);
+            if (comp != null)
+            {
+                int minBalance = 0; //для определения доступного колличества выбранного компьютера 
+
+                foreach(ComputerItem c in comp.ComputerItem)
+                {
+                    Component cmpt = sf_db.Component.FirstOrDefault(item => item.Id == c.ComponentId);
+
+                    if (cmpt != null)
+                    {
+                        if (minBalance == 0)
+                        {
+                            minBalance = cmpt.Quantity;
+                        }
+                    }
+                    else
+                    {
+                        if (minBalance > cmpt.Quantity)
+                        {
+                            minBalance = cmpt.Quantity;
+                        }
+                    }
+                
+                }
+
+                sf_lbl_balance.Text = minBalance.ToString();
+                sf_num_quantity.Maximum = minBalance; // установка максимального значения
             }
             else
             {
