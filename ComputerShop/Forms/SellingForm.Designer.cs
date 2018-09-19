@@ -33,8 +33,8 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.sf_rb_component = new System.Windows.Forms.RadioButton();
+            this.sf_rb_computer = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -42,12 +42,12 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.sf_rg_items = new System.Windows.Forms.GroupBox();
+            this.sf_cb_sellingItems = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.sf_num_quantity = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.sf_lbl_balance = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,8 +56,8 @@
             this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.sf_rg_items.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_quantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
@@ -77,8 +77,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.sf_rb_computer);
+            this.groupBox1.Controls.Add(this.sf_rb_component);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(339, 100);
@@ -113,27 +113,27 @@
             this.button2.Text = "Создать";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // sf_rb_component
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(7, 31);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(152, 24);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Комплектующее";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.sf_rb_component.AutoSize = true;
+            this.sf_rb_component.Checked = true;
+            this.sf_rb_component.Location = new System.Drawing.Point(7, 31);
+            this.sf_rb_component.Name = "sf_rb_component";
+            this.sf_rb_component.Size = new System.Drawing.Size(152, 24);
+            this.sf_rb_component.TabIndex = 0;
+            this.sf_rb_component.TabStop = true;
+            this.sf_rb_component.Text = "Комплектующее";
+            this.sf_rb_component.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // sf_rb_computer
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(7, 66);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(114, 24);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Компьютер";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.sf_rb_computer.AutoSize = true;
+            this.sf_rb_computer.Location = new System.Drawing.Point(7, 66);
+            this.sf_rb_computer.Name = "sf_rb_computer";
+            this.sf_rb_computer.Size = new System.Drawing.Size(114, 24);
+            this.sf_rb_computer.TabIndex = 1;
+            this.sf_rb_computer.Text = "Компьютер";
+            this.sf_rb_computer.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -211,31 +211,30 @@
             this.checkBox4.Text = "Цена";
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // sf_rg_items
             // 
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Controls.Add(this.comboBox2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 119);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(339, 145);
-            this.groupBox3.TabIndex = 7;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Комплектующие";
+            this.sf_rg_items.Controls.Add(this.button3);
+            this.sf_rg_items.Controls.Add(this.sf_lbl_balance);
+            this.sf_rg_items.Controls.Add(this.label2);
+            this.sf_rg_items.Controls.Add(this.sf_num_quantity);
+            this.sf_rg_items.Controls.Add(this.label1);
+            this.sf_rg_items.Controls.Add(this.sf_cb_sellingItems);
+            this.sf_rg_items.Location = new System.Drawing.Point(12, 119);
+            this.sf_rg_items.Name = "sf_rg_items";
+            this.sf_rg_items.Size = new System.Drawing.Size(339, 145);
+            this.sf_rg_items.TabIndex = 7;
+            this.sf_rg_items.TabStop = false;
+            this.sf_rg_items.Text = "Комплектующие";
             // 
-            // comboBox2
+            // sf_cb_sellingItems
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(5, 37);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(327, 28);
-            this.comboBox2.TabIndex = 7;
+            this.sf_cb_sellingItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sf_cb_sellingItems.FormattingEnabled = true;
+            this.sf_cb_sellingItems.Location = new System.Drawing.Point(5, 37);
+            this.sf_cb_sellingItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.sf_cb_sellingItems.Name = "sf_cb_sellingItems";
+            this.sf_cb_sellingItems.Size = new System.Drawing.Size(327, 28);
+            this.sf_cb_sellingItems.TabIndex = 7;
             // 
             // label1
             // 
@@ -246,12 +245,12 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Колличество";
             // 
-            // numericUpDown1
+            // sf_num_quantity
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(119, 79);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(99, 26);
-            this.numericUpDown1.TabIndex = 9;
+            this.sf_num_quantity.Location = new System.Drawing.Point(119, 79);
+            this.sf_num_quantity.Name = "sf_num_quantity";
+            this.sf_num_quantity.Size = new System.Drawing.Size(99, 26);
+            this.sf_num_quantity.TabIndex = 9;
             // 
             // label2
             // 
@@ -262,14 +261,14 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Остаток";
             // 
-            // label3
+            // sf_lbl_balance
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(115, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 20);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "label3";
+            this.sf_lbl_balance.AutoSize = true;
+            this.sf_lbl_balance.Location = new System.Drawing.Point(117, 114);
+            this.sf_lbl_balance.Name = "sf_lbl_balance";
+            this.sf_lbl_balance.Size = new System.Drawing.Size(18, 20);
+            this.sf_lbl_balance.TabIndex = 11;
+            this.sf_lbl_balance.Text = "0";
             // 
             // button3
             // 
@@ -331,7 +330,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 571);
             this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.sf_rg_items);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -343,14 +342,15 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SellingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Продажа";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.sf_rg_items.ResumeLayout(false);
+            this.sf_rg_items.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_quantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
@@ -362,8 +362,8 @@
 
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton sf_rb_computer;
+        private System.Windows.Forms.RadioButton sf_rb_component;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
@@ -378,13 +378,13 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox sf_rg_items;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sf_lbl_balance;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown sf_num_quantity;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox sf_cb_sellingItems;
         private System.Windows.Forms.TextBox textBox4;
     }
 }
