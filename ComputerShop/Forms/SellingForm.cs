@@ -31,6 +31,28 @@ namespace ComputerShop.Forms
             sf_rb_component.CheckedChanged += Sf_rb_component_CheckedChanged;
             sf_rb_computer.CheckedChanged += Sf_rb_computer_CheckedChanged;
             sf_cb_sellingItems.SelectedIndexChanged += Sf_cb_sellingItems_SelectedIndexChanged;
+            sf_cb_category.CheckedChanged += Sf_cb_category_CheckedChanged;
+        }
+
+        /// <summary>
+        /// Обработка выбора фильтра чекбокса Категория
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_cb_category_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sf_cb_category.Checked == true)
+            {
+                sf_cbf_category.DataSource = sf_db.Category.ToList();
+                sf_cbf_category.ValueMember = "Id";
+                sf_cbf_category.DisplayMember = "Title";
+                sf_cbf_category.Enabled = true;
+            }
+            else
+            {
+                sf_cbf_category.Enabled = false;
+                sf_cbf_category.DataSource = null;
+            }
         }
 
         /// <summary>
@@ -66,6 +88,7 @@ namespace ComputerShop.Forms
             {
                 GetSellingItems("computer");
                 sf_rg_items.Text = "Компьютеры";
+                GetEnabledFilters(false);
             }
         }
 
@@ -82,6 +105,7 @@ namespace ComputerShop.Forms
             {
                 GetSellingItems("component");
                 sf_rg_items.Text = "Комплектующие";
+                GetEnabledFilters(true);
             }
         }
 
@@ -123,6 +147,10 @@ namespace ComputerShop.Forms
             }
         }
 
+        /// <summary>
+        /// Получение количетсва доступных компьютеров
+        /// </summary>
+        /// <param name="cb"></param>
         private void GetComputerBalance(ComboBox cb)
         {
             Computer comp = sf_db.Computer.FirstOrDefault(c => c.Id == (int)cb.SelectedValue);
@@ -158,6 +186,25 @@ namespace ComputerShop.Forms
             {
                 sf_lbl_balance.Text = "0";
                 sf_num_quantity.Maximum = 0;
+            }
+        }
+
+        /// <summary>
+        /// Изменение доступности фильтров, взависимости от вібраной продажи
+        /// </summary>
+        /// <param name="status"></param>
+        private void GetEnabledFilters(bool status)
+        {
+            foreach(var item in sf_gb_filters.Controls)
+            {
+                if (item is CheckBox)
+                {
+                    CheckBox tmp = item as CheckBox;
+                    if (tmp.Text != "Цена")
+                    {
+                        tmp.Enabled = status;
+                    }
+                }
             }
         }
     }
