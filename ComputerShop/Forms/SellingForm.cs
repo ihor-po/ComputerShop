@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,12 @@ namespace ComputerShop.Forms
             sf_rb_computer.CheckedChanged += Sf_rb_computer_CheckedChanged;
             sf_cb_sellingItems.SelectedIndexChanged += Sf_cb_sellingItems_SelectedIndexChanged;
             sf_cb_category.CheckedChanged += Sf_cb_category_CheckedChanged;
+            sf_cbf_category.SelectedIndexChanged += Sf_cbf_category_SelectedIndexChanged;
+        }
+
+        private void Sf_cbf_category_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FilterItems("component");
         }
 
         /// <summary>
@@ -72,7 +79,6 @@ namespace ComputerShop.Forms
             {
                 GetComputerBalance(cb);
             }
-            MessageBox.Show(cb.SelectedValue.ToString());
         }
 
         /// <summary>
@@ -205,6 +211,37 @@ namespace ComputerShop.Forms
                         tmp.Enabled = status;
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Фильтрация товаров
+        /// </summary>
+        /// <param name="item"></param>
+        private void FilterItems(string item)
+        {
+            switch (item)
+            {
+                case "component":
+                    List<Component> cmpt = sf_db.Component.ToList();
+
+                    if (sf_cb_category.Checked == true)
+                    {
+                        if (sf_cbf_category.SelectedValue is int)
+                        {
+                            cmpt = cmpt.Where(tmp => tmp.CategoryId == (int)sf_cbf_category.SelectedValue).ToList();
+                        }
+                    }
+
+
+
+                    sf_cb_sellingItems.DataSource = cmpt;
+                    sf_cb_sellingItems.ValueMember = "Id";
+                    sf_cb_sellingItems.DisplayMember = "Title";
+
+                    break;
+                case "computer":
+                    break;
             }
         }
     }
