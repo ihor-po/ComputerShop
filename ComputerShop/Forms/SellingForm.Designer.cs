@@ -43,7 +43,7 @@
             this.sf_cb_price = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.sf_cb_vendorCode = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.sf_tbf_title = new System.Windows.Forms.TextBox();
             this.sf_cb_title = new System.Windows.Forms.CheckBox();
             this.sf_cb_category = new System.Windows.Forms.CheckBox();
             this.sf_rg_items = new System.Windows.Forms.GroupBox();
@@ -144,7 +144,7 @@
             this.sf_gb_filters.Controls.Add(this.sf_cb_price);
             this.sf_gb_filters.Controls.Add(this.textBox2);
             this.sf_gb_filters.Controls.Add(this.sf_cb_vendorCode);
-            this.sf_gb_filters.Controls.Add(this.textBox1);
+            this.sf_gb_filters.Controls.Add(this.sf_tbf_title);
             this.sf_gb_filters.Controls.Add(this.sf_cb_title);
             this.sf_gb_filters.Controls.Add(this.sf_cb_category);
             this.sf_gb_filters.Controls.Add(this.sf_cbf_category);
@@ -217,13 +217,13 @@
             this.sf_cb_vendorCode.Text = "Артикул";
             this.sf_cb_vendorCode.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // sf_tbf_title
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(5, 128);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(327, 26);
-            this.textBox1.TabIndex = 2;
+            this.sf_tbf_title.Enabled = false;
+            this.sf_tbf_title.Location = new System.Drawing.Point(5, 128);
+            this.sf_tbf_title.Name = "sf_tbf_title";
+            this.sf_tbf_title.Size = new System.Drawing.Size(327, 26);
+            this.sf_tbf_title.TabIndex = 2;
             // 
             // sf_cb_title
             // 
@@ -375,7 +375,7 @@
         private System.Windows.Forms.CheckBox sf_cb_price;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.CheckBox sf_cb_vendorCode;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox sf_tbf_title;
         private System.Windows.Forms.CheckBox sf_cb_title;
         private System.Windows.Forms.CheckBox sf_cb_category;
         private System.Windows.Forms.GroupBox sf_rg_items;

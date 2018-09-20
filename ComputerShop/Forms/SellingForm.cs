@@ -34,11 +34,59 @@ namespace ComputerShop.Forms
             sf_cb_sellingItems.SelectedIndexChanged += Sf_cb_sellingItems_SelectedIndexChanged;
             sf_cb_category.CheckedChanged += Sf_cb_category_CheckedChanged;
             sf_cbf_category.SelectedIndexChanged += Sf_cbf_category_SelectedIndexChanged;
+            sf_cb_title.CheckedChanged += Sf_cb_title_CheckedChanged;
+            sf_tbf_title.TextChanged += Sf_tbf_title_TextChanged;
         }
 
+        /// <summary>
+        /// Обработка ввода текста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_tbf_title_TextChanged(object sender, EventArgs e)
+        {
+            if (sf_rb_component.Checked == true)
+            {
+                FilterItems("component");
+            }
+            else
+            {
+                FilterItems("computer");
+            }
+        }
+
+        /// <summary>
+        /// Обработка выбора чекбокса "Название"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_cb_title_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sf_cb_title.Checked == true)
+            {
+                sf_tbf_title.Enabled = true;
+            }
+            else
+            {
+                sf_tbf_title.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        /// Обработка смены категории
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Sf_cbf_category_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FilterItems("component");
+            if (sf_rb_component.Checked == true)
+            {
+                FilterItems("component");
+            }
+            else
+            {
+                FilterItems("computer");
+            }
         }
 
         /// <summary>
@@ -233,7 +281,10 @@ namespace ComputerShop.Forms
                         }
                     }
 
-
+                    if (sf_cb_title.Checked == true)
+                    {
+                        cmpt = cmpt.Where(tmp => tmp.Title.ToLower().Contains(sf_tbf_title.Text.ToLower())).ToList();
+                    }
 
                     sf_cb_sellingItems.DataSource = cmpt;
                     sf_cb_sellingItems.ValueMember = "Id";
