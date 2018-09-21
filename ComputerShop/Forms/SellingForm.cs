@@ -38,6 +38,49 @@ namespace ComputerShop.Forms
             sf_tbf_title.TextChanged += Sf_tbf_title_TextChanged;
             sf_cb_vendorCode.CheckedChanged += Sf_cb_vendorCode_CheckedChanged;
             sf_tbf_vendorCode.TextChanged += Sf_tbf_title_TextChanged;
+            sf_cb_price.CheckedChanged += Sf_cb_price_CheckedChanged;
+            sf_num_priceFrom.ValueChanged += Sf_num_priceFrom_ValueChanged;
+            sf_num_priceTo.ValueChanged += Sf_num_priceFrom_ValueChanged;
+        }
+
+        #region Filters Controls
+        /// <summary>
+        /// Обработка изменения цены в фильтре
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_num_priceFrom_ValueChanged(object sender, EventArgs e)
+        {
+            if (sf_rb_component.Checked == true)
+            {
+                FilterItems("component");
+            }
+            else
+            {
+                FilterItems("computer");
+            }
+        }
+
+        
+        /// <summary>
+        /// Обработка выбора чекбокса Цена
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_cb_price_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sf_cb_price.Checked == true)
+            {
+                sf_num_priceFrom.Enabled = true;
+                sf_num_priceTo.Enabled = true;
+            }
+            else
+            {
+                sf_num_priceFrom.Value = 0;
+                sf_num_priceTo.Value = 0;
+                sf_num_priceFrom.Enabled = false;
+                sf_num_priceTo.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -130,6 +173,7 @@ namespace ComputerShop.Forms
                 sf_cbf_category.DataSource = null;
             }
         }
+        #endregion
 
         /// <summary>
         /// Обработка события изменения выбранного элемента для продажи
@@ -310,6 +354,11 @@ namespace ComputerShop.Forms
                     if (sf_cb_vendorCode.Checked == true)
                     {
                         cmpt = cmpt.Where(tmp => tmp.Vendor_code.ToLower().Contains(sf_tbf_vendorCode.Text.ToLower())).ToList();
+                    }
+
+                    if (sf_cb_price.Checked == true)
+                    {
+                        cmpt = cmpt.Where(tmp => tmp.Price >= sf_num_priceFrom.Value && tmp.Price <= sf_num_priceTo.Value).ToList();
                     }
 
                     sf_cb_sellingItems.DataSource = cmpt;

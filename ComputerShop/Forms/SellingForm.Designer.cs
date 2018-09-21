@@ -36,8 +36,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.sf_gb_filters = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.sf_num_priceTo = new System.Windows.Forms.NumericUpDown();
+            this.sf_num_priceFrom = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.sf_cb_price = new System.Windows.Forms.CheckBox();
@@ -56,8 +56,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.sf_gb_filters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceFrom)).BeginInit();
             this.sf_rg_items.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sf_num_quantity)).BeginInit();
             this.SuspendLayout();
@@ -137,8 +137,8 @@
             // 
             // sf_gb_filters
             // 
-            this.sf_gb_filters.Controls.Add(this.numericUpDown3);
-            this.sf_gb_filters.Controls.Add(this.numericUpDown2);
+            this.sf_gb_filters.Controls.Add(this.sf_num_priceTo);
+            this.sf_gb_filters.Controls.Add(this.sf_num_priceFrom);
             this.sf_gb_filters.Controls.Add(this.label5);
             this.sf_gb_filters.Controls.Add(this.label4);
             this.sf_gb_filters.Controls.Add(this.sf_cb_price);
@@ -155,21 +155,31 @@
             this.sf_gb_filters.TabStop = false;
             this.sf_gb_filters.Text = "Фильтрация";
             // 
-            // numericUpDown3
+            // sf_num_priceTo
             // 
-            this.numericUpDown3.Enabled = false;
-            this.numericUpDown3.Location = new System.Drawing.Point(206, 257);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(126, 26);
-            this.numericUpDown3.TabIndex = 16;
+            this.sf_num_priceTo.Enabled = false;
+            this.sf_num_priceTo.Location = new System.Drawing.Point(206, 257);
+            this.sf_num_priceTo.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.sf_num_priceTo.Name = "sf_num_priceTo";
+            this.sf_num_priceTo.Size = new System.Drawing.Size(126, 26);
+            this.sf_num_priceTo.TabIndex = 16;
             // 
-            // numericUpDown2
+            // sf_num_priceFrom
             // 
-            this.numericUpDown2.Enabled = false;
-            this.numericUpDown2.Location = new System.Drawing.Point(37, 257);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(125, 26);
-            this.numericUpDown2.TabIndex = 15;
+            this.sf_num_priceFrom.Enabled = false;
+            this.sf_num_priceFrom.Location = new System.Drawing.Point(37, 257);
+            this.sf_num_priceFrom.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.sf_num_priceFrom.Name = "sf_num_priceFrom";
+            this.sf_num_priceFrom.Size = new System.Drawing.Size(125, 26);
+            this.sf_num_priceFrom.TabIndex = 15;
             // 
             // label5
             // 
@@ -348,8 +358,8 @@
             this.groupBox1.PerformLayout();
             this.sf_gb_filters.ResumeLayout(false);
             this.sf_gb_filters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceFrom)).EndInit();
             this.sf_rg_items.ResumeLayout(false);
             this.sf_rg_items.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sf_num_quantity)).EndInit();
@@ -368,8 +378,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox sf_gb_filters;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown sf_num_priceTo;
+        private System.Windows.Forms.NumericUpDown sf_num_priceFrom;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox sf_cb_price;
