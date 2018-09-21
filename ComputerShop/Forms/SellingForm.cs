@@ -362,7 +362,7 @@ namespace ComputerShop.Forms
                 if (item is CheckBox)
                 {
                     CheckBox tmp = item as CheckBox;
-                    if (tmp.Text != "Цена")
+                    if (tmp.Text != "Цена" && tmp.Text != "Название")
                     {
                         tmp.Enabled = status;
                     }
@@ -407,11 +407,26 @@ namespace ComputerShop.Forms
                     sf_cb_sellingItems.DataSource = cmpt;
                     sf_cb_sellingItems.ValueMember = "Id";
                     sf_cb_sellingItems.DisplayMember = "Title";
-
                     break;
                 case "computer":
+                    List<Computer> comp = sf_db.Computer.ToList();
+                    if (sf_cb_title.Checked == true)
+                    {
+                        comp = comp.Where(tmp => tmp.Title.ToLower().Contains(sf_tbf_title.Text.ToLower())).ToList();
+                    }
+
+                    if (sf_cb_price.Checked == true)
+                    {
+                        comp = comp.Where(tmp => tmp.Price >= sf_num_priceFrom.Value && tmp.Price <= sf_num_priceTo.Value).ToList();
+                    }
+
+                    sf_cb_sellingItems.DataSource = comp;
+                    sf_cb_sellingItems.ValueMember = "Id";
+                    sf_cb_sellingItems.DisplayMember = "Title";
                     break;
             }
+
+
         }
 
         private void AddComponentToCheck()
