@@ -28,6 +28,10 @@ namespace ComputerShop.Forms
             sf_db = new ComputersShopContainer1();
             totalPrice = 0;
 
+            sf_cb_buyer.DataSource = sf_db.Buyer.ToList();
+            sf_cb_buyer.ValueMember = "Id";
+            sf_cb_buyer.DisplayMember = "LastName";
+
             GetSellingItems("component");
             GetComponentBalance(sf_cb_sellingItems);
 
@@ -45,18 +49,144 @@ namespace ComputerShop.Forms
             sf_num_priceTo.ValueChanged += Sf_num_priceFrom_ValueChanged;
             sf_btn_add.Click += Sf_btn_add_Click;
             sf_lv_checkItems.SelectedIndexChanged += Sf_lv_checkItems_SelectedIndexChanged;
+            sf_btn_cancel.Click += Sf_btn_cancel_Click;
+            sf_lv_checkItems.MouseDoubleClick += Sf_lv_checkItems_MouseDoubleClick;
+            sf_btn_createCheck.Click += Sf_btn_createCheck_Click;
         }
 
+        private void Sf_btn_createCheck_Click(object sender, EventArgs e)
+        {
+            if (sf_cb_buyer.SelectedIndex != -1)
+            {
+                if (sf_lv_checkItems.Items.Count > 0)
+                {
+                    using (var transaction = sf_db.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            //Сохранение чека в БД
+                            Check check = new Check();
+                            check.BuyerId = (int)sf_cb_buyer.SelectedValue;
+                            check.Date = DateTime.Now;
+                            check.CheckCoast = Convert.ToDouble(string.Format("{0:0.00}", totalPrice.ToString()));
+                            sf_db.Check.Add(check);
+                            sf_db.SaveChanges();
+
+
+                            //Сохранение компонентов в БД
+                            foreach (ListViewItem item in sf_lv_checkItems.Items)
+                            {
+                                CheckItem ci = new CheckItem();
+                                ci.CheckId = check.Id;
+                                
+
+                                if (item.Text != "N/A")
+                                {
+                                    ci.ItemId = sf_db.Component.FirstOrDefault(tmp => tmp.Vendor_code == item.Text).Id.ToString();
+                                    ci.IsComputer = 0;
+                                }
+                                else
+                                {
+                                    string title = item.SubItems[2].Text;
+                                    Computer _tmp = sf_db.Computer.FirstOrDefault(tmp => tmp.Title == title);
+                                    ci.ItemId = _tmp.Id.ToString();
+                                    ci.IsComputer = 1;
+                                }
+                                sf_db.CheckItem.Add(ci);
+                                sf_db.SaveChanges();
+                            }
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            ShowMessage(ex.Message);
+                            transaction.Rollback();
+                        }
+                    }
+                }
+                else
+                {
+                    ShowMessage("Вы не добавили в чек товар!");
+                }
+            }
+            else
+            {
+                ShowMessage("Вы не выбрали покупателя");
+            }
+
+            
+        }
+
+        /// <summary>
+        /// Удаление товара из списка чека
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_lv_checkItems_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (sf_lv_checkItems.SelectedItems[0] != null)
+            {
+                if (MessageBox.Show("Удалить компонент?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    if (totalPrice != 0)
+                    {
+                        totalPrice -= (Convert.ToDecimal(sf_lv_checkItems.SelectedItems[0].SubItems[3].Text) * Convert.ToInt32(sf_lv_checkItems.SelectedItems[0].SubItems[1].Text));
+                        sf_lbl_result.Text = totalPrice.ToString();
+                    }
+
+                    sf_lv_checkItems.Items.Remove(sf_lv_checkItems.SelectedItems[0]);
+                    sf_tb_description.Text = "0";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Отмена создания чека
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_btn_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        /// <summary>
+        /// Обработка выбора элемента в лист вью
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Sf_lv_checkItems_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (sf_lv_checkItems.SelectedItems.Count > 0 && sf_lv_checkItems.SelectedItems[0] != null)
             {
                 string vendorCode = sf_lv_checkItems.SelectedItems[0].Text;
-                Component cmpt = sf_db.Component.FirstOrDefault(c => c.Vendor_code == vendorCode);
 
-                if (cmpt != null)
+                if (vendorCode != "N/A")
                 {
-                    sf_tb_description.Text = cmpt.Description;
+                    Component cmpt = sf_db.Component.FirstOrDefault(c => c.Vendor_code == vendorCode);
+
+                    if (cmpt != null)
+                    {
+                        sf_tb_description.Text = cmpt.Description;
+                    }
+                    else
+                    {
+                        sf_tb_description.Text = "";
+                    }
+                }
+                else
+                {
+                    string title = sf_lv_checkItems.SelectedItems[0].SubItems[2].Text;
+                    Computer comp = sf_db.Computer.FirstOrDefault(c => c.Title == title);
+
+                    if (comp != null)
+                    {
+                        sf_tb_description.Text = comp.Title;
+                    }
+                    else
+                    {
+                        sf_tb_description.Text = "";
+                    }
                 }
             }
            
@@ -77,13 +207,10 @@ namespace ComputerShop.Forms
                 }
                 else
                 {
-                    
+                    AddComputerToCheck();
                 }
+                sf_num_quantity.Value = 0;
             }
-            
-
-            //totalPrice += ((double)cmpt.Price * assemblyPersent);
-            //cf_l_totalPrice.Text = totalPrice.ToString();
         }
 
         #region Filters Controls
@@ -429,6 +556,9 @@ namespace ComputerShop.Forms
 
         }
 
+        /// <summary>
+        /// Добавление комплектующего в чек
+        /// </summary>
         private void AddComponentToCheck()
         {
             Component cmpt = sf_db.Component.FirstOrDefault(c => c.Id == (int)sf_cb_sellingItems.SelectedValue);
@@ -441,6 +571,32 @@ namespace ComputerShop.Forms
 
             totalPrice += sf_num_quantity.Value * cmpt.Price;
             sf_lbl_result.Text = totalPrice.ToString();
+        }
+
+        /// <summary>
+        /// Добавление компьютера в чек
+        /// </summary>
+        private void AddComputerToCheck()
+        {
+            Computer comp = sf_db.Computer.FirstOrDefault(c => c.Id == (int)sf_cb_sellingItems.SelectedValue);
+            ListViewItem item = new ListViewItem("N/A");
+            item.SubItems.Add(sf_num_quantity.Value.ToString());
+            item.SubItems.Add(comp.Title);
+            item.SubItems.Add(comp.Price.ToString());
+
+            sf_lv_checkItems.Items.Add(item);
+
+            totalPrice += sf_num_quantity.Value * comp.Price;
+            sf_lbl_result.Text = totalPrice.ToString();
+        }
+
+        /// <summary>
+        /// Отображение сообщения
+        /// </summary>
+        /// <param name="msg"></param>
+        private void ShowMessage(string msg)
+        {
+            MessageBox.Show(msg, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

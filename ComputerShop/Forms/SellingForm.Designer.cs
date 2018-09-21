@@ -33,8 +33,8 @@
             this.sf_rb_computer = new System.Windows.Forms.RadioButton();
             this.sf_rb_component = new System.Windows.Forms.RadioButton();
             this.sf_lv_checkItems = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.sf_btn_cancel = new System.Windows.Forms.Button();
+            this.sf_btn_createCheck = new System.Windows.Forms.Button();
             this.sf_gb_filters = new System.Windows.Forms.GroupBox();
             this.sf_num_priceTo = new System.Windows.Forms.NumericUpDown();
             this.sf_num_priceFrom = new System.Windows.Forms.NumericUpDown();
@@ -60,6 +60,8 @@
             this.colPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.sf_lbl_result = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.sf_cb_buyer = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.sf_gb_filters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceTo)).BeginInit();
@@ -85,7 +87,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.sf_rb_computer);
             this.groupBox1.Controls.Add(this.sf_rb_component);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(12, 71);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(339, 100);
             this.groupBox1.TabIndex = 1;
@@ -129,28 +131,30 @@
             this.sf_lv_checkItems.Location = new System.Drawing.Point(367, 12);
             this.sf_lv_checkItems.MultiSelect = false;
             this.sf_lv_checkItems.Name = "sf_lv_checkItems";
-            this.sf_lv_checkItems.Size = new System.Drawing.Size(560, 369);
+            this.sf_lv_checkItems.Size = new System.Drawing.Size(560, 422);
             this.sf_lv_checkItems.TabIndex = 2;
             this.sf_lv_checkItems.UseCompatibleStateImageBehavior = false;
             this.sf_lv_checkItems.View = System.Windows.Forms.View.Details;
             // 
-            // button1
+            // sf_btn_cancel
             // 
-            this.button1.Location = new System.Drawing.Point(367, 523);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 37);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Отменить";
-            this.button1.UseVisualStyleBackColor = true;
+            this.sf_btn_cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.sf_btn_cancel.Location = new System.Drawing.Point(367, 575);
+            this.sf_btn_cancel.Name = "sf_btn_cancel";
+            this.sf_btn_cancel.Size = new System.Drawing.Size(130, 43);
+            this.sf_btn_cancel.TabIndex = 3;
+            this.sf_btn_cancel.Text = "Отменить";
+            this.sf_btn_cancel.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // sf_btn_createCheck
             // 
-            this.button2.Location = new System.Drawing.Point(797, 523);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 37);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Создать";
-            this.button2.UseVisualStyleBackColor = true;
+            this.sf_btn_createCheck.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.sf_btn_createCheck.Location = new System.Drawing.Point(797, 576);
+            this.sf_btn_createCheck.Name = "sf_btn_createCheck";
+            this.sf_btn_createCheck.Size = new System.Drawing.Size(130, 43);
+            this.sf_btn_createCheck.TabIndex = 4;
+            this.sf_btn_createCheck.Text = "Создать";
+            this.sf_btn_createCheck.UseVisualStyleBackColor = true;
             // 
             // sf_gb_filters
             // 
@@ -165,7 +169,7 @@
             this.sf_gb_filters.Controls.Add(this.sf_cb_title);
             this.sf_gb_filters.Controls.Add(this.sf_cb_category);
             this.sf_gb_filters.Controls.Add(this.sf_cbf_category);
-            this.sf_gb_filters.Location = new System.Drawing.Point(12, 270);
+            this.sf_gb_filters.Location = new System.Drawing.Point(12, 329);
             this.sf_gb_filters.Name = "sf_gb_filters";
             this.sf_gb_filters.Size = new System.Drawing.Size(339, 293);
             this.sf_gb_filters.TabIndex = 6;
@@ -280,7 +284,7 @@
             this.sf_rg_items.Controls.Add(this.sf_num_quantity);
             this.sf_rg_items.Controls.Add(this.label1);
             this.sf_rg_items.Controls.Add(this.sf_cb_sellingItems);
-            this.sf_rg_items.Location = new System.Drawing.Point(12, 119);
+            this.sf_rg_items.Location = new System.Drawing.Point(12, 178);
             this.sf_rg_items.Name = "sf_rg_items";
             this.sf_rg_items.Size = new System.Drawing.Size(339, 145);
             this.sf_rg_items.TabIndex = 7;
@@ -344,7 +348,7 @@
             // 
             this.sf_tb_description.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.sf_tb_description.Enabled = false;
-            this.sf_tb_description.Location = new System.Drawing.Point(367, 398);
+            this.sf_tb_description.Location = new System.Drawing.Point(367, 450);
             this.sf_tb_description.Multiline = true;
             this.sf_tb_description.Name = "sf_tb_description";
             this.sf_tb_description.ReadOnly = true;
@@ -379,7 +383,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(503, 530);
+            this.label3.Location = new System.Drawing.Point(503, 585);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 24);
             this.label3.TabIndex = 9;
@@ -391,27 +395,47 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sf_lbl_result.AutoSize = true;
-            this.sf_lbl_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sf_lbl_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.sf_lbl_result.ForeColor = System.Drawing.Color.Maroon;
-            this.sf_lbl_result.Location = new System.Drawing.Point(638, 530);
+            this.sf_lbl_result.Location = new System.Drawing.Point(638, 583);
             this.sf_lbl_result.Name = "sf_lbl_result";
-            this.sf_lbl_result.Size = new System.Drawing.Size(25, 25);
+            this.sf_lbl_result.Size = new System.Drawing.Size(27, 29);
             this.sf_lbl_result.TabIndex = 10;
             this.sf_lbl_result.Text = "0";
             this.sf_lbl_result.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(15, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(100, 20);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Покупатель";
+            // 
+            // sf_cb_buyer
+            // 
+            this.sf_cb_buyer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.sf_cb_buyer.FormattingEnabled = true;
+            this.sf_cb_buyer.Location = new System.Drawing.Point(17, 38);
+            this.sf_cb_buyer.Name = "sf_cb_buyer";
+            this.sf_cb_buyer.Size = new System.Drawing.Size(334, 28);
+            this.sf_cb_buyer.TabIndex = 11;
             // 
             // SellingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 571);
+            this.ClientSize = new System.Drawing.Size(939, 632);
+            this.Controls.Add(this.sf_cb_buyer);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.sf_lbl_result);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.sf_tb_description);
             this.Controls.Add(this.sf_rg_items);
             this.Controls.Add(this.sf_gb_filters);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.sf_btn_createCheck);
+            this.Controls.Add(this.sf_btn_cancel);
             this.Controls.Add(this.sf_lv_checkItems);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -443,8 +467,8 @@
         private System.Windows.Forms.RadioButton sf_rb_computer;
         private System.Windows.Forms.RadioButton sf_rb_component;
         private System.Windows.Forms.ListView sf_lv_checkItems;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button sf_btn_cancel;
+        private System.Windows.Forms.Button sf_btn_createCheck;
         private System.Windows.Forms.GroupBox sf_gb_filters;
         private System.Windows.Forms.NumericUpDown sf_num_priceTo;
         private System.Windows.Forms.NumericUpDown sf_num_priceFrom;
@@ -470,5 +494,7 @@
         private System.Windows.Forms.ColumnHeader colPrice;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label sf_lbl_result;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox sf_cb_buyer;
     }
 }

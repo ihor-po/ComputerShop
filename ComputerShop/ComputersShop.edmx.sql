@@ -251,6 +251,11 @@ ON [dbo].[CheckItem]
 GO
 
 --Add categories
+INSERT INTO [dbo].[Buyer] VALUES
+('Лопухов', 'Семен','380432233111'),
+('Андурхазимов', 'Пирунат','380432233555');
+
+
 INSERT INTO [dbo].[Category] VALUES
 ('Процессоры'),
 ('Материнские платы'),
