@@ -14,6 +14,7 @@ namespace ComputerShop.Forms
     public partial class SellingForm : Form
     {
         private ComputersShopContainer1 sf_db;
+        private decimal totalPrice;
 
         public SellingForm()
         {
@@ -25,6 +26,7 @@ namespace ComputerShop.Forms
         private void SellingForm_Load(object sender, EventArgs e)
         {
             sf_db = new ComputersShopContainer1();
+            totalPrice = 0;
 
             GetSellingItems("component");
             GetComponentBalance(sf_cb_sellingItems);
@@ -41,6 +43,47 @@ namespace ComputerShop.Forms
             sf_cb_price.CheckedChanged += Sf_cb_price_CheckedChanged;
             sf_num_priceFrom.ValueChanged += Sf_num_priceFrom_ValueChanged;
             sf_num_priceTo.ValueChanged += Sf_num_priceFrom_ValueChanged;
+            sf_btn_add.Click += Sf_btn_add_Click;
+            sf_lv_checkItems.SelectedIndexChanged += Sf_lv_checkItems_SelectedIndexChanged;
+        }
+
+        private void Sf_lv_checkItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sf_lv_checkItems.SelectedItems.Count > 0 && sf_lv_checkItems.SelectedItems[0] != null)
+            {
+                string vendorCode = sf_lv_checkItems.SelectedItems[0].Text;
+                Component cmpt = sf_db.Component.FirstOrDefault(c => c.Vendor_code == vendorCode);
+
+                if (cmpt != null)
+                {
+                    sf_tb_description.Text = cmpt.Description;
+                }
+            }
+           
+        }
+
+        /// <summary>
+        /// Добавление товара в чек
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_btn_add_Click(object sender, EventArgs e)
+        {
+            if (sf_num_quantity.Value > 0)
+            {
+                if (sf_rb_component.Checked == true)
+                {
+                    AddComponentToCheck();
+                }
+                else
+                {
+                    
+                }
+            }
+            
+
+            //totalPrice += ((double)cmpt.Price * assemblyPersent);
+            //cf_l_totalPrice.Text = totalPrice.ToString();
         }
 
         #region Filters Controls
@@ -369,6 +412,20 @@ namespace ComputerShop.Forms
                 case "computer":
                     break;
             }
+        }
+
+        private void AddComponentToCheck()
+        {
+            Component cmpt = sf_db.Component.FirstOrDefault(c => c.Id == (int)sf_cb_sellingItems.SelectedValue);
+            ListViewItem item = new ListViewItem(cmpt.Vendor_code.ToString());
+            item.SubItems.Add(sf_num_quantity.Value.ToString());
+            item.SubItems.Add(cmpt.Title);
+            item.SubItems.Add(cmpt.Price.ToString());
+
+            sf_lv_checkItems.Items.Add(item);
+
+            totalPrice += sf_num_quantity.Value * cmpt.Price;
+            sf_lbl_result.Text = totalPrice.ToString();
         }
     }
 }

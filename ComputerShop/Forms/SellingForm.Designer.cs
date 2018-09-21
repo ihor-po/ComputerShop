@@ -32,7 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.sf_rb_computer = new System.Windows.Forms.RadioButton();
             this.sf_rb_component = new System.Windows.Forms.RadioButton();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.sf_lv_checkItems = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.sf_gb_filters = new System.Windows.Forms.GroupBox();
@@ -47,13 +47,19 @@
             this.sf_cb_title = new System.Windows.Forms.CheckBox();
             this.sf_cb_category = new System.Windows.Forms.CheckBox();
             this.sf_rg_items = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.sf_btn_add = new System.Windows.Forms.Button();
             this.sf_lbl_balance = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.sf_num_quantity = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.sf_cb_sellingItems = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.sf_tb_description = new System.Windows.Forms.TextBox();
+            this.colVendCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label3 = new System.Windows.Forms.Label();
+            this.sf_lbl_result = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.sf_gb_filters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sf_num_priceTo)).BeginInit();
@@ -108,14 +114,25 @@
             this.sf_rb_component.Text = "Комплектующее";
             this.sf_rb_component.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // sf_lv_checkItems
             // 
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listView1.Location = new System.Drawing.Point(367, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(448, 369);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.sf_lv_checkItems.BackColor = System.Drawing.SystemColors.Window;
+            this.sf_lv_checkItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.sf_lv_checkItems.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colVendCode,
+            this.colQuantity,
+            this.colName,
+            this.colPrice});
+            this.sf_lv_checkItems.FullRowSelect = true;
+            this.sf_lv_checkItems.GridLines = true;
+            this.sf_lv_checkItems.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.sf_lv_checkItems.Location = new System.Drawing.Point(367, 12);
+            this.sf_lv_checkItems.MultiSelect = false;
+            this.sf_lv_checkItems.Name = "sf_lv_checkItems";
+            this.sf_lv_checkItems.Size = new System.Drawing.Size(560, 369);
+            this.sf_lv_checkItems.TabIndex = 2;
+            this.sf_lv_checkItems.UseCompatibleStateImageBehavior = false;
+            this.sf_lv_checkItems.View = System.Windows.Forms.View.Details;
             // 
             // button1
             // 
@@ -128,7 +145,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(685, 523);
+            this.button2.Location = new System.Drawing.Point(797, 523);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(130, 37);
             this.button2.TabIndex = 4;
@@ -257,7 +274,7 @@
             // 
             // sf_rg_items
             // 
-            this.sf_rg_items.Controls.Add(this.button3);
+            this.sf_rg_items.Controls.Add(this.sf_btn_add);
             this.sf_rg_items.Controls.Add(this.sf_lbl_balance);
             this.sf_rg_items.Controls.Add(this.label2);
             this.sf_rg_items.Controls.Add(this.sf_num_quantity);
@@ -270,14 +287,14 @@
             this.sf_rg_items.TabStop = false;
             this.sf_rg_items.Text = "Комплектующие";
             // 
-            // button3
+            // sf_btn_add
             // 
-            this.button3.Location = new System.Drawing.Point(224, 79);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 60);
-            this.button3.TabIndex = 12;
-            this.button3.Text = "Добавить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.sf_btn_add.Location = new System.Drawing.Point(224, 79);
+            this.sf_btn_add.Name = "sf_btn_add";
+            this.sf_btn_add.Size = new System.Drawing.Size(108, 60);
+            this.sf_btn_add.TabIndex = 12;
+            this.sf_btn_add.Text = "Добавить";
+            this.sf_btn_add.UseVisualStyleBackColor = true;
             // 
             // sf_lbl_balance
             // 
@@ -323,28 +340,79 @@
             this.sf_cb_sellingItems.Size = new System.Drawing.Size(327, 28);
             this.sf_cb_sellingItems.TabIndex = 7;
             // 
-            // textBox4
+            // sf_tb_description
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(367, 398);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(448, 116);
-            this.textBox4.TabIndex = 8;
+            this.sf_tb_description.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.sf_tb_description.Enabled = false;
+            this.sf_tb_description.Location = new System.Drawing.Point(367, 398);
+            this.sf_tb_description.Multiline = true;
+            this.sf_tb_description.Name = "sf_tb_description";
+            this.sf_tb_description.ReadOnly = true;
+            this.sf_tb_description.Size = new System.Drawing.Size(560, 116);
+            this.sf_tb_description.TabIndex = 8;
+            // 
+            // colVendCode
+            // 
+            this.colVendCode.Text = "Артикул";
+            this.colVendCode.Width = 120;
+            // 
+            // colName
+            // 
+            this.colName.DisplayIndex = 1;
+            this.colName.Text = "Наименование";
+            this.colName.Width = 210;
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.DisplayIndex = 2;
+            this.colQuantity.Text = "Количество";
+            this.colQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colQuantity.Width = 105;
+            // 
+            // colPrice
+            // 
+            this.colPrice.Text = "Цена";
+            this.colPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colPrice.Width = 100;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(503, 530);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 24);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Общая сумма";
+            // 
+            // sf_lbl_result
+            // 
+            this.sf_lbl_result.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.sf_lbl_result.AutoSize = true;
+            this.sf_lbl_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sf_lbl_result.ForeColor = System.Drawing.Color.Maroon;
+            this.sf_lbl_result.Location = new System.Drawing.Point(638, 530);
+            this.sf_lbl_result.Name = "sf_lbl_result";
+            this.sf_lbl_result.Size = new System.Drawing.Size(25, 25);
+            this.sf_lbl_result.TabIndex = 10;
+            this.sf_lbl_result.Text = "0";
+            this.sf_lbl_result.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SellingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 571);
-            this.Controls.Add(this.textBox4);
+            this.ClientSize = new System.Drawing.Size(939, 571);
+            this.Controls.Add(this.sf_lbl_result);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.sf_tb_description);
             this.Controls.Add(this.sf_rg_items);
             this.Controls.Add(this.sf_gb_filters);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.sf_lv_checkItems);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -374,7 +442,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton sf_rb_computer;
         private System.Windows.Forms.RadioButton sf_rb_component;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView sf_lv_checkItems;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox sf_gb_filters;
@@ -389,12 +457,18 @@
         private System.Windows.Forms.CheckBox sf_cb_title;
         private System.Windows.Forms.CheckBox sf_cb_category;
         private System.Windows.Forms.GroupBox sf_rg_items;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button sf_btn_add;
         private System.Windows.Forms.Label sf_lbl_balance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown sf_num_quantity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox sf_cb_sellingItems;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox sf_tb_description;
+        private System.Windows.Forms.ColumnHeader colVendCode;
+        private System.Windows.Forms.ColumnHeader colQuantity;
+        private System.Windows.Forms.ColumnHeader colName;
+        private System.Windows.Forms.ColumnHeader colPrice;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sf_lbl_result;
     }
 }
