@@ -36,6 +36,26 @@ namespace ComputerShop.Forms
             sf_cbf_category.SelectedIndexChanged += Sf_cbf_category_SelectedIndexChanged;
             sf_cb_title.CheckedChanged += Sf_cb_title_CheckedChanged;
             sf_tbf_title.TextChanged += Sf_tbf_title_TextChanged;
+            sf_cb_vendorCode.CheckedChanged += Sf_cb_vendorCode_CheckedChanged;
+            sf_tbf_vendorCode.TextChanged += Sf_tbf_title_TextChanged;
+        }
+
+        /// <summary>
+        /// Обработка выбора чекбокса Артикул
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Sf_cb_vendorCode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sf_cb_vendorCode.Checked == true)
+            {
+                sf_tbf_vendorCode.Enabled = true;
+            }
+            else
+            {
+                sf_tbf_vendorCode.Text = "";
+                sf_tbf_vendorCode.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -68,6 +88,7 @@ namespace ComputerShop.Forms
             }
             else
             {
+                sf_tbf_title.Text = "";
                 sf_tbf_title.Enabled = false;
             }
         }
@@ -284,6 +305,11 @@ namespace ComputerShop.Forms
                     if (sf_cb_title.Checked == true)
                     {
                         cmpt = cmpt.Where(tmp => tmp.Title.ToLower().Contains(sf_tbf_title.Text.ToLower())).ToList();
+                    }
+
+                    if (sf_cb_vendorCode.Checked == true)
+                    {
+                        cmpt = cmpt.Where(tmp => tmp.Vendor_code.ToLower().Contains(sf_tbf_vendorCode.Text.ToLower())).ToList();
                     }
 
                     sf_cb_sellingItems.DataSource = cmpt;
