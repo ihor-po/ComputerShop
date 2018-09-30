@@ -38,6 +38,18 @@ namespace ComputerShop
             mf_createComputer.Click += Mf_createComputer_Click;
             mf_creatSelling.Click += Mf_creatSelling_Click;
             mf_cb_period.CheckedChanged += Mf_cb_period_CheckedChanged;
+            mf_dtp_from.ValueChanged += Mf_dtp_from_ValueChanged;
+            mf_dtp_to.ValueChanged += Mf_dtp_from_ValueChanged;
+        }
+
+        /// <summary>
+        /// Обработка изменения даты для фильтрации
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Mf_dtp_from_ValueChanged(object sender, EventArgs e)
+        {
+            FillData();
         }
 
         /// <summary>
@@ -200,17 +212,29 @@ namespace ComputerShop
         {
             try
             {
-                var chk = db.Check.Select(check =>
-                new {
+                if (mf_cb_period.Checked == true)
+                {
+                    mf_data.DataSource = db.Check.Where(check => check.Date >= mf_dtp_from.Value && check.Date <= mf_dtp_to.Value).Select(check =>
+                    new {
+                        ID = check.Id,
+                        Фамилия_покупателя = check.Buyer.LastName,
+                        Имя_покупателя = check.Buyer.FirstName,
+                        Дата_продажи = check.Date,
+                        Сумма = check.CheckCoast
+                    }).ToList();
+                }
+                else
+                {
+                    mf_data.DataSource = db.Check.Select(check =>
+                    new {
                     ID = check.Id,
                     Фамилия_покупателя = check.Buyer.LastName,
                     Имя_покупателя = check.Buyer.FirstName,
                     Дата_продажи = check.Date,
                     Сумма = check.CheckCoast
-                });
-
+                    }).ToList();
+                }
                 
-                mf_data.DataSource = chk.ToList();
 
                 GetTotalCheckCoast();
             }
@@ -220,6 +244,9 @@ namespace ComputerShop
             }
         }
 
+        /// <summary>
+        /// Подсчет общей суммы продаж
+        /// </summary>
         private void GetTotalCheckCoast()
         {
             double total = 0;
