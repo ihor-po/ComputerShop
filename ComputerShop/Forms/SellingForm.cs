@@ -86,10 +86,10 @@ namespace ComputerShop.Forms
                                     ci.ItemQuantity = quantity;
                                     ci.IsComputer = 0;
 
+                                    //Изменение количества комплектующего
                                     Component cmpnt = sf_db.Component.FirstOrDefault(c => c.Id == ci.ItemId);
                                     quantity = cmpnt.Quantity - quantity;
                                     cmpnt.Quantity = (short)quantity;
-                                    //sf_db.SaveChanges();
                                 }
                                 else
                                 {
@@ -100,11 +100,11 @@ namespace ComputerShop.Forms
                                     ci.ItemQuantity = quantity;
                                     ci.IsComputer = 1;
 
+                                    //Изменение количества комплектующего компьютера
                                     foreach (ComputerItem compItem in _tmp.ComputerItem)
                                     {
                                         compItem.Component.Quantity = (short)(compItem.Component.Quantity - quantity);
-                                    }
-                                    
+                                    }   
                                 }
                                 sf_db.CheckItem.Add(ci);
                                 sf_db.SaveChanges();
