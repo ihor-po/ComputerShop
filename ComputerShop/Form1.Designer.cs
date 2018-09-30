@@ -39,9 +39,16 @@
             this.mf_CreateComponent = new System.Windows.Forms.Button();
             this.mf_addCategoryBtn = new System.Windows.Forms.Button();
             this.mf_data = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.mf_dtp_from = new System.Windows.Forms.DateTimePicker();
+            this.mf_dtp_to = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.mf_cb_period = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.mf_gr_func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -73,6 +80,7 @@
             // 
             // mf_gr_func
             // 
+            this.mf_gr_func.Controls.Add(this.groupBox1);
             this.mf_gr_func.Controls.Add(this.mf_creatSelling);
             this.mf_gr_func.Controls.Add(this.mf_createComputer);
             this.mf_gr_func.Controls.Add(this.mf_CreateComponent);
@@ -157,6 +165,64 @@
             this.mf_data.Size = new System.Drawing.Size(806, 456);
             this.mf_data.TabIndex = 2;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.mf_cb_period);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.mf_dtp_to);
+            this.groupBox1.Controls.Add(this.mf_dtp_from);
+            this.groupBox1.Location = new System.Drawing.Point(6, 279);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(240, 171);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Фильтровать";
+            // 
+            // mf_dtp_from
+            // 
+            this.mf_dtp_from.Enabled = false;
+            this.mf_dtp_from.Location = new System.Drawing.Point(6, 77);
+            this.mf_dtp_from.Name = "mf_dtp_from";
+            this.mf_dtp_from.Size = new System.Drawing.Size(228, 29);
+            this.mf_dtp_from.TabIndex = 0;
+            // 
+            // mf_dtp_to
+            // 
+            this.mf_dtp_to.Enabled = false;
+            this.mf_dtp_to.Location = new System.Drawing.Point(6, 136);
+            this.mf_dtp_to.Name = "mf_dtp_to";
+            this.mf_dtp_to.Size = new System.Drawing.Size(228, 29);
+            this.mf_dtp_to.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 109);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "По";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "С";
+            // 
+            // mf_cb_period
+            // 
+            this.mf_cb_period.AutoSize = true;
+            this.mf_cb_period.Location = new System.Drawing.Point(6, 26);
+            this.mf_cb_period.Name = "mf_cb_period";
+            this.mf_cb_period.Size = new System.Drawing.Size(179, 28);
+            this.mf_cb_period.TabIndex = 4;
+            this.mf_cb_period.Text = "Выбрать период";
+            this.mf_cb_period.UseVisualStyleBackColor = true;
+            // 
             // Main_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,6 +238,8 @@
             this.statusStrip1.PerformLayout();
             this.mf_gr_func.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +256,12 @@
         private System.Windows.Forms.Button mf_CreateComponent;
         private System.Windows.Forms.Button mf_createComputer;
         private System.Windows.Forms.Button mf_creatSelling;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox mf_cb_period;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker mf_dtp_to;
+        private System.Windows.Forms.DateTimePicker mf_dtp_from;
     }
 }
 

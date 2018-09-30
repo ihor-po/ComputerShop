@@ -37,6 +37,26 @@ namespace ComputerShop
             mf_CreateComponent.Click += Mf_CreateComponent_Click;
             mf_createComputer.Click += Mf_createComputer_Click;
             mf_creatSelling.Click += Mf_creatSelling_Click;
+            mf_cb_period.CheckedChanged += Mf_cb_period_CheckedChanged;
+        }
+
+        /// <summary>
+        /// Обработка выбора чекбокса период
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Mf_cb_period_CheckedChanged(object sender, EventArgs e)
+        {
+            if (mf_cb_period.Checked == true)
+            {
+                mf_dtp_from.Enabled = true;
+                mf_dtp_to.Enabled = true;
+            }
+            else
+            {
+                mf_dtp_from.Enabled = false;
+                mf_dtp_to.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -180,19 +200,36 @@ namespace ComputerShop
         {
             try
             {
-                mf_data.DataSource = db.Check.Select(check =>
+                var chk = db.Check.Select(check =>
                 new {
                     ID = check.Id,
                     Фамилия_покупателя = check.Buyer.LastName,
                     Имя_покупателя = check.Buyer.FirstName,
                     Дата_продажи = check.Date,
                     Сумма = check.CheckCoast
-                }).ToList();
+                });
+
+                
+                mf_data.DataSource = chk.ToList();
+
+                GetTotalCheckCoast();
             }
             catch (Exception ex)
             {
                 ShowMessage(ex.Message);
             }
+        }
+
+        private void GetTotalCheckCoast()
+        {
+            double total = 0;
+
+            foreach (DataGridViewRow item in mf_data.Rows)
+            {
+                total += (double)item.Cells[4].Value;
+            }
+
+            mf_sb_totalCoast.Text = total.ToString();
         }
     }
 }
