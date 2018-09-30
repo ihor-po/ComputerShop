@@ -17,10 +17,6 @@ namespace ComputerShop
 
         ComputersShopContainer1 db;
 
-        ComboBox cbTmp;
-        Button btnTmp;
-        TextBox tbTmp;
-
         protected const string regText = @"(?m)^.[a-zA-Zа-яА-Я0-9 -]{2,30}(?=\r?$)";
         protected const string regCode = @"(?m)^[A-Z0-9]{13}$";
 
@@ -35,9 +31,7 @@ namespace ComputerShop
         {
             db = new ComputersShopContainer1();
 
-
             FillData();
-            
 
             mf_addCategoryBtn.Click += Mf_addCategoryBtn_Click;
             mf_CreateComponent.Click += Mf_CreateComponent_Click;
@@ -56,6 +50,7 @@ namespace ComputerShop
 
             if (sf.ShowDialog() == DialogResult.OK)
             {
+                MessageBox.Show("Продажа прошла успешно");
                 FillData();
             }
         }
@@ -185,7 +180,14 @@ namespace ComputerShop
         {
             try
             {
-                mf_data.DataSource = db.Category.Select(cat => new { ID = cat.Id, Наименование = cat.Title }).ToList();
+                mf_data.DataSource = db.Check.Select(check =>
+                new {
+                    ID = check.Id,
+                    Фамилия_покупателя = check.Buyer.LastName,
+                    Имя_покупателя = check.Buyer.FirstName,
+                    Дата_продажи = check.Date,
+                    Сумма = check.CheckCoast
+                }).ToList();
             }
             catch (Exception ex)
             {

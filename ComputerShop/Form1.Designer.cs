@@ -28,15 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.mf_sb_total_label = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_sb_totalCoast = new System.Windows.Forms.ToolStripStatusLabel();
             this.mf_gr_func = new System.Windows.Forms.GroupBox();
+            this.mf_creatSelling = new System.Windows.Forms.Button();
             this.mf_createComputer = new System.Windows.Forms.Button();
             this.mf_CreateComponent = new System.Windows.Forms.Button();
             this.mf_addCategoryBtn = new System.Windows.Forms.Button();
             this.mf_data = new System.Windows.Forms.DataGridView();
-            this.mf_creatSelling = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.mf_gr_func.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mf_data)).BeginInit();
@@ -85,6 +87,16 @@
             this.mf_gr_func.TabStop = false;
             this.mf_gr_func.Text = "Функционал";
             // 
+            // mf_creatSelling
+            // 
+            this.mf_creatSelling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.mf_creatSelling.Location = new System.Drawing.Point(6, 217);
+            this.mf_creatSelling.Name = "mf_creatSelling";
+            this.mf_creatSelling.Size = new System.Drawing.Size(240, 47);
+            this.mf_creatSelling.TabIndex = 3;
+            this.mf_creatSelling.Text = "Создать продажу";
+            this.mf_creatSelling.UseVisualStyleBackColor = true;
+            // 
             // mf_createComputer
             // 
             this.mf_createComputer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -119,24 +131,31 @@
             // 
             this.mf_data.AllowUserToAddRows = false;
             this.mf_data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.mf_data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mf_data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mf_data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mf_data.DefaultCellStyle = dataGridViewCellStyle2;
             this.mf_data.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mf_data.Location = new System.Drawing.Point(0, 0);
+            this.mf_data.MultiSelect = false;
             this.mf_data.Name = "mf_data";
-            this.mf_data.ReadOnly = true;
             this.mf_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mf_data.Size = new System.Drawing.Size(806, 456);
             this.mf_data.TabIndex = 2;
-            // 
-            // mf_creatSelling
-            // 
-            this.mf_creatSelling.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.mf_creatSelling.Location = new System.Drawing.Point(6, 217);
-            this.mf_creatSelling.Name = "mf_creatSelling";
-            this.mf_creatSelling.Size = new System.Drawing.Size(240, 47);
-            this.mf_creatSelling.TabIndex = 3;
-            this.mf_creatSelling.Text = "Создать продажу";
-            this.mf_creatSelling.UseVisualStyleBackColor = true;
             // 
             // Main_form
             // 
