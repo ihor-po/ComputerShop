@@ -93,7 +93,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CheckId" Type="int" Nullable="false" />
-    <Property Name="ItemId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="ItemQuantity" Type="int" Nullable="false" />
     <Property Name="IsComputer" Type="tinyint" Nullable="false" DefaultValue="0" />
   </EntityType>
   <Association Name="CategoryComponent">
@@ -306,7 +307,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Check" Relationship="ComputersShop.CheckCheckItem" FromRole="CheckItem" ToRole="Check" />
           <Property Name="CheckId" Type="Int32" Nullable="false" />
-          <Property Name="ItemId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="ItemQuantity" Type="Int32" Nullable="false" />
           <Property Name="IsComputer" Type="Byte" Nullable="false" DefaultValue="0" />
         </EntityType>
         <Association Name="CheckCheckItem">
@@ -392,6 +394,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CheckId" ColumnName="CheckId" />
           <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemQuantity" ColumnName="ItemQuantity" />
           <ScalarProperty Name="IsComputer" ColumnName="IsComputer" />
         </MappingFragment>
       </EntityTypeMapping>

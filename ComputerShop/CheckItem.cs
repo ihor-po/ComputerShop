@@ -22,7 +22,8 @@ namespace ComputerShop
     
         public int Id { get; set; }
         public int CheckId { get; set; }
-        public string ItemId { get; set; }
+        public int ItemId { get; set; }
+        public int ItemQuantity { get; set; }
         public byte IsComputer { get; set; }
     
         public virtual Check Check { get; set; }

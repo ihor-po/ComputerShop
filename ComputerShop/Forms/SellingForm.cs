@@ -78,22 +78,30 @@ namespace ComputerShop.Forms
                             {
                                 CheckItem ci = new CheckItem();
                                 ci.CheckId = check.Id;
-                                
-
+                              
                                 if (item.Text != "N/A")
                                 {
-                                    ci.ItemId = sf_db.Component.FirstOrDefault(tmp => tmp.Vendor_code == item.Text).Id.ToString();
+                                    int quantity = Convert.ToInt32(item.SubItems[1].Text);
+                                    ci.ItemId = sf_db.Component.FirstOrDefault(tmp => tmp.Vendor_code == item.Text).Id;
+                                    ci.ItemQuantity = quantity;
                                     ci.IsComputer = 0;
+
+                                    Component cmpnt = sf_db.Component.FirstOrDefault(c => c.Id == ci.ItemId);
+                                    quantity = cmpnt.Quantity - quantity;
+                                    cmpnt.Quantity = (short)quantity;
+                                    sf_db.SaveChanges();
                                 }
                                 else
                                 {
                                     string title = item.SubItems[2].Text;
                                     Computer _tmp = sf_db.Computer.FirstOrDefault(tmp => tmp.Title == title);
-                                    ci.ItemId = _tmp.Id.ToString();
+                                    ci.ItemId = _tmp.Id;
                                     ci.IsComputer = 1;
                                 }
                                 sf_db.CheckItem.Add(ci);
                                 sf_db.SaveChanges();
+
+                               
                             }
                             transaction.Commit();
                         }

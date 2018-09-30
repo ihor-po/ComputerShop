@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 09/04/2018 22:09:27
+-- Date Created: 09/30/2018 20:11:55
 -- Generated from EDMX file: \\mac\iCloud\Step\ADO.NET\DZ\ComputerShop\ComputerShop\ComputersShop.edmx
 -- --------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Component] (
     [Title] nvarchar(30)  NOT NULL,
     [CategoryId] int  NOT NULL,
     [Vendor_code] nvarchar(max)  NOT NULL,
-    [Price] decimal(18,2)  NOT NULL,
+    [Price] decimal(18,0)  NOT NULL,
     [Quantity] smallint  NOT NULL,
     [Description] nvarchar(max)  NOT NULL
 );
@@ -86,7 +86,7 @@ GO
 CREATE TABLE [dbo].[Computer] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Title] nvarchar(30)  NOT NULL,
-    [Price] decimal(18,2)  NOT NULL
+    [Price] decimal(18,0)  NOT NULL
 );
 GO
 
@@ -120,7 +120,8 @@ GO
 CREATE TABLE [dbo].[CheckItem] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CheckId] int  NOT NULL,
-    [ItemId] nvarchar(max)  NOT NULL,
+    [ItemId] int  NOT NULL,
+    [ItemQuantity] int  NOT NULL,
     [IsComputer] tinyint  NOT NULL
 );
 GO
@@ -250,13 +251,16 @@ ON [dbo].[CheckItem]
     ([CheckId]);
 GO
 
+
 --Add categories
-INSERT INTO [dbo].[Buyer] VALUES
+INSERT INTO[dbo].[Buyer]
+VALUES
 ('Лопухов', 'Семен','380432233111'),
 ('Андурхазимов', 'Пирунат','380432233555');
 
 
-INSERT INTO [dbo].[Category] VALUES
+INSERT INTO[dbo].[Category]
+VALUES
 ('Процессоры'),
 ('Материнские платы'),
 ('Корпуса'),
@@ -268,7 +272,8 @@ INSERT INTO [dbo].[Category] VALUES
 ('Блоки питания');
 GO
 --Add components
-INSERT INTO [dbo].[Component] VALUES
+INSERT INTO[dbo].[Component]
+VALUES
 ('Intel Core i3-8100 3.6GHz/8GT', 1, 'BX80684I38100', 3890, 15, 'Новый процессор Intel Core i3-8100 8-го поколения, с кодовым названием микроархитектуры Coffee Lake-S. Предназначен для настольной платформы Intel LGA 1151. Принадлежит к семейству высокопроизводительных процессоров Core i3.'),
 ('Intel Core i5-8400 2.8GHz/8GT', 1, 'BX80684I58400', 6390, 10, 'Новый процессор Intel Core i5-8400 8-го поколения, с кодовым названием микроархитектуры Coffee Lake-S. Предназначен для настольной платформы Intel LGA 1151. Принадлежит к семейству высокопроизводительных процессоров Core i5.'),
 ('Asus H110M-K', 2, '5733051DFE12E', 1565, 112, 'H110M-K — функциональная материнская плата Asus формата micro-ATX начального уровня, предназначенная для новой платформы Intel и базируется на системной логике H110. Поддерживает 2 слота оперативной памяти DDR4.'),
@@ -285,18 +290,21 @@ INSERT INTO [dbo].[Component] VALUES
 ('Aerocool VX-550 550W', 9, 'ACPNVX55NEY11', 949, 10, 'НБлоки питания линейки VX – самые доступные в ассортименте Aerocool и предназначены для систем начального уровня. Они собраны из высококачественных компонентов и обеспечивают стабильное и надёжное питание для всего системного блока.');
 GO
 
-INSERT INTO [dbo].[Computer] VALUES
+INSERT INTO[dbo].[Computer]
+VALUES
 ('Новый супер компьютер', 6273.25),
 ('Яблочный компьютер', 23716.45);
 GO
 
-INSERT INTO [dbo].[ComputerItem] VALUES
+INSERT INTO[dbo].[ComputerItem]
+VALUES
 (1, 1),
 (1, 3),
 (2, 2),
 (2, 4),
 (2, 8);
 GO
+
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------
